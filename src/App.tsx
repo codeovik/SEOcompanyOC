@@ -13,6 +13,7 @@ import WhyUs from "./components/WhyUs";
 import Stats from "./components/Stats";
 import Process from "./components/Process";
 import Founder from "./components/Founder";
+import GrowthAgenda from "./components/GrowthAgenda";
 import CtaSection from "./components/CtaSection";
 import TeamExpertise from "./components/TeamExpertise";
 import Testimonials from "./components/Testimonials";
@@ -59,6 +60,9 @@ export default function App() {
 
         {/* Founder Bio Executive Section */}
         <Founder onBioClick={() => setIsCallModalOpen(true)} />
+
+        {/* Your Growth Is Our Only Agenda Section */}
+        <GrowthAgenda onCtaClick={() => setIsCallModalOpen(true)} />
 
         {/* Process Roadmap Scroll Timeline Section */}
         <Process onCtaClick={() => setIsCallModalOpen(true)} />
