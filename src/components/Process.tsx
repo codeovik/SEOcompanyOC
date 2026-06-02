@@ -132,11 +132,11 @@ export default function Process({ onCtaClick }: ProcessProps) {
                     </div>
 
                     {/* Standard Premium Card Container matching other section structures */}
-                    <div className={`p-6 sm:p-8 rounded-xl bg-white border-2 transition-all duration-300 ml-8 lg:ml-0 ${
+                    <div className={`p-6 sm:p-8 rounded-2xl bg-white border-2 transition-all duration-300 ml-8 lg:ml-0 ${
                       isPastThreshold 
-                        ? "border-[#f6921e]/50 shadow-[0_8px_20px_rgba(246,146,30,0.02)]" 
-                        : "border-slate-200/85"
-                    } hover:border-[#f6921e]/45 group`}>
+                        ? "border-[#f6921e]/60 shadow-[0_12px_30px_rgba(246,146,30,0.06)]" 
+                        : "border-slate-200/80"
+                    } hover:border-[#f6921e]/60 group`}>
                       
                       {/* Card Header Subtitle */}
                       <h3 className="text-xl sm:text-2xl font-bold font-satoshi text-slate-900 mb-3 group-hover:text-slate-950 transition-colors">
