@@ -23,7 +23,7 @@ export default function Footer({
         
         {/* Dynamic Massive Typographic Wordmark Section (Inspired by Google Labs & Graphy) - Placed at the very top of footer */}
         <div className="pt-4 pb-10 border-b border-slate-200 select-none overflow-hidden">
-          <h2 className="text-[11.2vw] sm:text-[11.2vw] xl:text-[102px] font-black font-satoshi text-slate-950 tracking-tighter text-center leading-none whitespace-nowrap">
+          <h2 className="text-[11.2vw] md:text-[11.3vw] xl:text-[158px] font-bold font-satoshi text-[#301d06] tracking-tighter text-center leading-none whitespace-nowrap">
             SEO CompanyOC
           </h2>
         </div>
@@ -51,8 +51,8 @@ export default function Footer({
               <span className="block text-[10px] font-extrabold uppercase tracking-widest text-slate-400 font-satoshi mb-3">
                 Industry Trust &amp; Reviews
               </span>
-              <div className="flex flex-wrap items-center gap-3">
-                <div className="h-10 px-2.5 py-1 bg-slate-50 border border-slate-200 rounded-lg flex items-center justify-center">
+              <div className="flex flex-wrap items-center gap-5">
+                <div className="h-10 flex items-center justify-center">
                   <img
                     src="https://www.seocompanyoc.com/wp-content/uploads/2026/05/yelp_waitlist_logo-300x151.png"
                     alt="Yelp badge"
@@ -60,7 +60,7 @@ export default function Footer({
                     referrerPolicy="no-referrer"
                   />
                 </div>
-                <div className="h-10 px-2.5 py-1 bg-slate-50 border border-slate-200 rounded-lg flex items-center justify-center">
+                <div className="h-10 flex items-center justify-center">
                   <img
                     src="https://www.seocompanyoc.com/wp-content/uploads/2026/05/google-customer-review-logo-300x125.png"
                     alt="Google rating badge"
@@ -68,7 +68,7 @@ export default function Footer({
                     referrerPolicy="no-referrer"
                   />
                 </div>
-                <div className="h-10 px-2.5 py-1 bg-slate-50 border border-slate-200 rounded-lg flex items-center justify-center">
+                <div className="h-10 flex items-center justify-center">
                   <img
                     src="https://www.seocompanyoc.com/wp-content/uploads/2026/05/bark-logoo-300x88.png"
                     alt="Bark.com badge"

@@ -82,12 +82,15 @@ export default function Process({ onCtaClick }: ProcessProps) {
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-satoshi text-slate-900 tracking-tight leading-tight">
             How We Get You to <br className="hidden sm:inline" />
-            <span className="font-playfair font-bold text-slate-900 opacity-75 block sm:inline">Page One</span>
+            <span className="font-playfair font-bold text-slate-900 opacity-75 block sm:inline">Page One and Stay</span>
           </h2>
+          <p className="text-sm sm:text-base text-slate-500 font-satoshi font-medium mt-4 max-w-2xl mx-auto leading-relaxed">
+            We don't guess — we execute a proven, step-by-step strategy that moves your business from invisible to unstoppable on Google.
+          </p>
         </div>
 
         {/* Timeline Area Wrapper */}
-        <div className="relative max-w-5xl mx-auto pb-8">
+        <div className="relative w-full pb-8">
           
           {/* Central Progress Line for Desktop */}
           <div className="hidden lg:block absolute left-1/2 top-4 bottom-12 w-[3px] -translate-x-1/2 bg-slate-200/80 rounded-full">
@@ -122,12 +125,12 @@ export default function Process({ onCtaClick }: ProcessProps) {
                 >
                   
                   {/* Outer card wrapper */}
-                  <div className="w-full lg:w-[46%] transition-all duration-500 animate-slide-in">
+                  <div className="w-full lg:w-[47.5%] transition-all duration-500 animate-slide-in">
                     
                     {/* Floating Step Anchor badge: combined step and phase formatted as requested (pure black text, white bg, gray border with colon replacement) */}
-                    <div className="mb-4 pl-8 lg:pl-0">
-                      <span className="text-xs uppercase tracking-wider font-extrabold text-black font-satoshi bg-white px-3.5 py-1.5 rounded-full inline-block border border-slate-200 shadow-sm">
-                        {step.stepNum} : {step.phase}
+                    <div className={`mb-4 pl-8 lg:pl-0 lg:flex ${idx === 1 ? "lg:justify-start" : "lg:justify-end"}`}>
+                      <span className="text-xs tracking-wider font-semibold text-black font-satoshi bg-white px-3.5 py-2.5 rounded-full inline-block border border-slate-200 shadow-sm">
+                        {step.stepNum}: {step.phase}
                       </span>
                     </div>
 
@@ -138,13 +141,18 @@ export default function Process({ onCtaClick }: ProcessProps) {
                         : "border-slate-200/80"
                     } hover:border-[#f6921e]/60 group`}>
                       
-                      {/* Card Header Subtitle */}
-                      <h3 className="text-xl sm:text-2xl font-bold font-satoshi text-slate-900 mb-3 group-hover:text-slate-950 transition-colors">
+                      {/* Premium Icon box inside the card itself as requested */}
+                      <div className="inline-flex p-3 bg-orange-50/70 border border-orange-100 text-[#f6921e] rounded-[16px] mb-4.5 group-hover:bg-[#f6921e]/10 transition-colors duration-300">
+                        <step.icon className="w-6 h-6 stroke-[1.8]" />
+                      </div>
+
+                      {/* Card Header Subtitle with increased font size */}
+                      <h3 className="text-2xl sm:text-3xl font-bold font-satoshi text-slate-900 mb-3 group-hover:text-slate-950 transition-colors">
                         {step.title}
                       </h3>
 
-                      {/* Explicitly 15-20 length formatted description */}
-                      <p className="text-xs sm:text-sm text-slate-500 font-satoshi font-semibold leading-relaxed mb-6">
+                      {/* Explicitly 15-20 length formatted description with increased font size */}
+                      <p className="text-sm sm:text-base text-slate-500 font-satoshi font-semibold leading-relaxed mb-6">
                         {step.description}
                       </p>
 
@@ -152,8 +160,8 @@ export default function Process({ onCtaClick }: ProcessProps) {
                       <div className="flex flex-wrap gap-2 pt-2 border-t border-slate-100">
                         {step.tags.map((tag, tIdx) => (
                           <span
-                            key={tIdx}
-                            className="text-[10px] sm:text-xs font-satoshi font-bold text-slate-500 bg-slate-100 hover:bg-slate-200/80 transition-colors rounded-full px-3 py-1 select-none"
+                             key={tIdx}
+                             className="text-[10px] sm:text-xs font-satoshi font-bold text-slate-500 bg-slate-100 hover:bg-slate-200/80 transition-colors rounded-full px-3 py-1 select-none"
                           >
                             {tag}
                           </span>
@@ -163,27 +171,7 @@ export default function Process({ onCtaClick }: ProcessProps) {
                     </div>
                   </div>
 
-                  {/* Desktop Timeline Junction Node floating precisely in the center with action-specific icon */}
-                  <div className="hidden lg:flex absolute left-1/2 top-4 -translate-x-1/2 items-center justify-center pointer-events-none z-10">
-                    <div className={`w-10 h-10 rounded-full border-2 bg-white flex items-center justify-center transition-all duration-300 ${
-                      isPastThreshold 
-                        ? "border-[#f6921e] text-[#f6921e] scale-110 shadow-md shadow-orange-500/10" 
-                        : "border-slate-300 text-slate-400"
-                    }`}>
-                      <step.icon className="w-5 h-5 stroke-[2.25]" />
-                    </div>
-                  </div>
 
-                  {/* Mobile Timeline Junction Node floating on the left progress bar with action-specific icon */}
-                  <div className="lg:hidden absolute left-4 sm:left-6 top-4 -translate-x-1/2 flex items-center justify-center pointer-events-none z-10">
-                    <div className={`w-8 h-8 rounded-full border bg-white flex items-center justify-center transition-all duration-300 ${
-                      isPastThreshold 
-                        ? "border-[#f6921e] text-[#f6921e] scale-105" 
-                        : "border-slate-300 text-slate-400"
-                    }`}>
-                      <step.icon className="w-4 h-4 stroke-[2.25]" />
-                    </div>
-                  </div>
 
                 </div>
               );
