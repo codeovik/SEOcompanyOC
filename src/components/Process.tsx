@@ -93,7 +93,7 @@ export default function Process({ onCtaClick }: ProcessProps) {
         <div className="relative w-full pb-8">
           
           {/* Central Progress Line for Desktop */}
-          <div className="hidden lg:block absolute left-1/2 top-4 bottom-12 w-[3px] -translate-x-1/2 bg-slate-200/80 rounded-full">
+          <div className="hidden lg:block absolute left-1/2 top-4 bottom-12 w-[4px] -translate-x-1/2 bg-slate-200/80 rounded-full">
             <div 
               className="absolute top-0 left-0 w-full bg-[#f6921e] rounded-full transition-all duration-150 ease-out"
               style={{ height: `${scrollPercent}%` }}
@@ -101,7 +101,7 @@ export default function Process({ onCtaClick }: ProcessProps) {
           </div>
 
           {/* Left progress indicator for Mobile/Tablet */}
-          <div className="block lg:hidden absolute left-4 sm:left-6 top-4 bottom-12 w-[3px] bg-slate-250 rounded-full">
+          <div className="block lg:hidden absolute left-4 sm:left-6 top-4 bottom-12 w-[4px] bg-slate-250 rounded-full">
             <div 
               className="absolute top-0 left-0 w-full bg-[#f6921e] rounded-full transition-all duration-150 ease-out"
               style={{ height: `${scrollPercent}%` }}
