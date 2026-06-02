@@ -1,0 +1,6 @@
+{
+  "name": "SEOcompanyOC Layout",
+  "description": "A high-fidelity layout representing SEOcompanyOC with a beautiful Ghibli-inspired hero design, custom navigation, and an interactive logo carousel.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
