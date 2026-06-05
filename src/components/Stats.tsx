@@ -1,53 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { ArrowUpRight, Search, Eye, Clock } from "lucide-react";
-import { motion, useInView } from "motion/react";
 
 interface StatsProps {
   onSeeAllClick: () => void;
-}
-
-function AnimatedCounter({ valueStr }: { valueStr: string }) {
-  const numericValue = parseInt(valueStr, 10) || 0;
-  const suffix = valueStr.replace(/[0-9]/g, "");
-
-  const ref = useRef<HTMLSpanElement>(null);
-  // once: false triggers the effect every time it enters/exits the viewport (top-to-bottom and bottom-to-top)
-  const isInView = useInView(ref, { once: false, amount: 0.3 });
-  const [displayValue, setDisplayValue] = useState(0);
-
-  useEffect(() => {
-    if (isInView) {
-      let start = 0;
-      const end = numericValue;
-      const duration = 1.2; // 1.2 seconds animation
-      const startTime = performance.now();
-
-      let animationFrameId: number;
-
-      const updateCount = (now: number) => {
-        const elapsed = (now - startTime) / 1000;
-        const progress = Math.min(elapsed / duration, 1);
-        
-        // Quad out easing for premium, decelerating effect
-        const easeProgress = progress * (2 - progress);
-        const currentCount = Math.floor(easeProgress * (end - start) + start);
-        
-        setDisplayValue(currentCount);
-
-        if (progress < 1) {
-          animationFrameId = requestAnimationFrame(updateCount);
-        }
-      };
-
-      animationFrameId = requestAnimationFrame(updateCount);
-      return () => cancelAnimationFrame(animationFrameId);
-    } else {
-      // Reset when scrolled past or out of view to allow repeated triggers
-      setDisplayValue(0);
-    }
-  }, [isInView, numericValue]);
-
-  return <span ref={ref}>{displayValue}{suffix}</span>;
 }
 
 export default function Stats({ onSeeAllClick }: StatsProps) {
@@ -72,49 +27,15 @@ export default function Stats({ onSeeAllClick }: StatsProps) {
     },
   ];
 
-  // Animation variants for container cascading and staggered feel
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.12,
-      },
-    },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 85,
-        damping: 14,
-        duration: 0.7,
-      },
-    },
-  };
-
   return (
     <div className="w-full bg-[#faf9f6] border-b border-slate-200">
       {/* Maximum width container matching other sections with exactly the same side borders */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 border-l border-r border-slate-200">
         
-        <motion.div 
-          className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.15 }} // Triggers bidirectionally (scrolling down and scrolling back up)
-          variants={containerVariants}
-        >
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* Left Column: Heading and Badge */}
-          <motion.div 
-            className="lg:col-span-5 flex flex-col justify-center text-left"
-            variants={cardVariants}
-          >
+          <div className="lg:col-span-5 flex flex-col justify-center text-left">
             {/* Section Badge matching styling */}
             <div className="mb-5">
               <span className="text-xs tracking-wider font-semibold text-black font-satoshi bg-white px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 border border-[#f6921e]/20 shadow-[0_10px_25px_-5px_rgba(148,163,184,0.15)] select-none">
@@ -145,7 +66,7 @@ export default function Stats({ onSeeAllClick }: StatsProps) {
                 <ArrowUpRight className="w-4 h-4 text-slate-500 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </button>
             </div>
-          </motion.div>
+          </div>
 
           {/* Right Column: Cascading Staircase/Stacked Panel Layout representing the reference */}
           <div className="lg:col-span-7 w-full flex flex-col gap-2 sm:gap-2.5 md:gap-3">
@@ -157,14 +78,13 @@ export default function Stats({ onSeeAllClick }: StatsProps) {
               const widthClass = 
                 idx === 0 
                   ? "lg:w-[84%] lg:ml-auto" 
-                  : idx === 1 
+                  : idx === 1
                   ? "lg:w-[92%] lg:ml-auto" 
                   : "lg:w-full";
 
               return (
-                <motion.div
+                <div
                   key={idx}
-                  variants={cardVariants}
                   className={`w-full ${widthClass} rounded-xl p-5 sm:p-6 md:p-8 flex items-center justify-between gap-6 transition-all duration-300 ${
                     stat.accent 
                       ? "bg-[#f6921e] text-white border-2 border-[#f6921e] hover:opacity-[0.97]" 
@@ -174,7 +94,7 @@ export default function Stats({ onSeeAllClick }: StatsProps) {
                   <div className="flex items-center gap-5 sm:gap-6 md:gap-8 flex-1">
                     {/* Bold Large Percentages/Stats with less font weight */}
                     <div className="text-4xl sm:text-5xl md:text-6xl font-satoshi font-semibold tracking-tight select-none min-w-[70px] sm:min-w-[100px]">
-                      <AnimatedCounter valueStr={stat.percentage} />
+                      {stat.percentage}
                     </div>
 
                     {/* Left border line separating number and label */}
@@ -197,13 +117,13 @@ export default function Stats({ onSeeAllClick }: StatsProps) {
                     <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 stroke-[1.8]" />
                   </div>
 
-                </motion.div>
+                </div>
               );
             })}
 
           </div>
 
-        </motion.div>
+        </div>
 
       </div>
     </div>
