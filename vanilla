@@ -1,0 +1,1997 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SEO Company OC — Orange County SEO Agency Since 2008</title>
+<meta name="description" content="Orange County's #1 SEO Agency since 2008. We build websites and run digital marketing campaigns that put your business on the first page of Google — and keep it there." />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+<!-- Tailwind (Play CDN) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Satoshi', 'Inter', 'sans-serif'],
+          satoshi: ['Satoshi', 'sans-serif'],
+          playfair: ['"Playfair Display"', 'serif'],
+        },
+        colors: {
+          accent: '#f6921e',
+        }
+      }
+    }
+  }
+</script>
+
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+<style>
+  body {
+    font-family: 'Satoshi', sans-serif;
+    background-color: #fcfcfc;
+    color: #1a1a1a;
+  }
+
+  @keyframes scrollLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-scroll {
+    display: flex;
+    width: max-content;
+    animation: scrollLeft 35s linear infinite;
+  }
+  .animate-scroll:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .animate-fade-in { animation: fadeIn 0.6s ease-out; }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-slide-in { animation: slideIn 0.6s ease-out; }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-slide-up { animation: slideUp 0.4s ease-out; }
+
+  /* line-clamp utilities (Tailwind CDN doesn't ship the plugin) */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Modal open/close transitions (replacing framer-motion) */
+  .modal-overlay {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .modal-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .modal-card {
+    opacity: 0;
+    transform: scale(0.95) translateY(15px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  .modal-overlay.open .modal-card {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  select.disabled-look:disabled,
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  input[type="radio"].sr-only, .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>
+</head>
+<body class="min-h-screen bg-[#fcfbfa] flex flex-col justify-between font-sans selection:bg-orange-200 selection:text-orange-900 overflow-x-hidden p-0 m-0">
+<div class="w-full">
+
+<!-- ============ NAVBAR ============ -->
+<nav class="w-full bg-white border-b border-slate-200 z-45 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20 border-l border-r border-slate-200">
+
+    <div class="flex items-center">
+      <a href="#" class="flex items-center group transition-opacity" id="nav-logo">
+        <img
+          src="https://www.seocompanyoc.com/wp-content/uploads/2025/09/cropped-Logo-and-Slogan-sep-800x160.png"
+          alt="SEOcompanyOC Logo"
+          class="h-8 sm:h-10 w-auto object-contain"
+          referrerpolicy="no-referrer"
+        />
+      </a>
+    </div>
+
+    <div class="hidden lg:flex items-center space-x-5 text-slate-800 font-satoshi font-semibold text-[15px]">
+      <a href="#" class="px-1 py-1.5 hover:text-orange-500 rounded-lg transition-colors" id="nav-home">Home</a>
+      <a href="#" class="px-1 py-1.5 hover:text-orange-500 rounded-lg transition-colors" id="nav-about">About</a>
+
+      <div class="relative" id="services-dropdown-wrapper">
+        <button
+          type="button"
+          id="nav-services"
+          class="px-1 py-1.5 rounded-lg flex items-center gap-1 hover:text-orange-500 transition-colors cursor-pointer text-slate-800"
+        >
+          Services
+          <i data-lucide="chevron-down" class="w-3.5 h-3.5 transition-transform duration-200" id="services-chevron"></i>
+        </button>
+
+        <div
+          id="services-dropdown"
+          class="hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 bg-white rounded-2xl shadow-xl border border-slate-100 p-2 z-50"
+        >
+          <div class="text-[11px] font-bold tracking-widest text-slate-400 uppercase p-2 border-b border-slate-50 mb-1">
+            Award-winning capabilities
+          </div>
+          <div class="space-y-1" id="services-dropdown-list"></div>
+          <div class="mt-1.5 pt-1.5 border-t border-slate-50 flex items-center justify-between p-1.5 bg-slate-50/50 rounded-b-xl">
+            <span class="text-[10px] text-slate-400 font-medium">Ready to claim 1st position?</span>
+            <button
+              onclick="closeServicesDropdown(); openAuditModal();"
+              class="text-[10px] text-[#f6921e] font-bold hover:underline flex items-center gap-0.5"
+            >
+              Audit Website
+              <i data-lucide="arrow-up-right" class="w-2.5 h-2.5"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <a href="#" class="px-1 py-1.5 hover:text-orange-500 rounded-lg transition-colors" id="nav-pricing">Pricing</a>
+      <a href="#" class="px-1 py-1.5 hover:text-orange-500 rounded-lg transition-colors" id="nav-portfolio">Portfolio</a>
+      <a href="#" class="px-1 py-1.5 hover:text-orange-500 rounded-lg transition-colors" id="nav-blog">Blog</a>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button
+        onclick="openCallModal()"
+        class="bg-[#f6921e] backdrop-blur-[2px] rounded-[8px] text-white font-satoshi font-bold text-xs sm:text-sm py-2 px-3.5 sm:py-2.5 sm:px-5 flex items-center gap-2 select-none cursor-pointer transition-all hover:scale-[1.02] active:scale-[0.98] shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.35)] hover:shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.45),0_6px_20px_rgba(246,146,30,0.15)] group"
+        id="btn-navbar-bookcall"
+      >
+        <span>Book a Call</span>
+        <div class="w-[18px] h-[18px] sm:w-[22px] sm:h-[22px] bg-white rounded-full flex items-center justify-center text-[#f6921e] transition-transform duration-200 group-hover:rotate-45">
+          <i data-lucide="arrow-up-right" class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 stroke-[2.5]"></i>
+        </div>
+      </button>
+    </div>
+
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<div class="w-full bg-white border-b border-slate-200 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto w-full border-l border-r border-slate-200">
+    <div
+      class="relative w-full min-h-[500px] md:min-h-[600px] lg:min-h-[670px] bg-cover bg-[#edf4f8] bg-[right_center] md:bg-[85%_center] flex flex-col justify-center py-12 md:py-20"
+      style="background-image:url('https://ovikbiswas.wordpress.com/wp-content/uploads/2026/06/make_it_light_mode_as_202606021445.jpg'); background-repeat:no-repeat;"
+    >
+      <div class="absolute inset-y-0 left-0 w-full sm:w-[65%] md:w-[55%] lg:w-[52%] bg-gradient-to-r from-white/70 via-white/30 to-transparent pointer-events-none z-[1]"></div>
+
+      <div class="relative z-10 w-full px-6 sm:px-12 md:pl-16 lg:pl-[72px] lg:pr-8 lg:max-w-[50%] text-left flex flex-col justify-center">
+
+        <div class="inline-flex items-center gap-2 bg-white/90 backdrop-blur-md rounded-full border border-slate-200 py-1.5 px-4 text-xs font-semibold text-slate-800 shadow-sm max-w-fit mb-5 animate-fade-in">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#f6921e] opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-[#f6921e]"></span>
+          </span>
+          Orange County's #1 SEO Agency Since 2008
+        </div>
+
+        <h1 class="font-satoshi font-bold text-black text-3xl sm:text-4xl md:text-5xl lg:text-[54px] lg:leading-[1.12] tracking-tight">
+          Marketing That Actually Drives
+          <span class="font-playfair font-semibold italic text-black opacity-80 block sm:inline">Results</span>
+        </h1>
+
+        <p class="text-slate-600 font-satoshi font-medium text-xs sm:text-sm md:text-base leading-relaxed mt-4 max-w-md">
+          We build websites and run digital marketing campaigns that put your business on the first page of Google — and keep it there.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mt-7 max-w-xs sm:max-w-none">
+          <button
+            onclick="openAuditModal()"
+            class="bg-[#f6921e] backdrop-blur-[2px] rounded-[8px] text-white font-satoshi font-bold text-xs sm:text-sm py-3 px-5 sm:px-6 flex items-center justify-center gap-2 select-none cursor-pointer transition-all hover:scale-[1.02] active:scale-[0.98] shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.35)] hover:shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.45),0_8px_25px_rgba(246,146,30,0.2)] group"
+            id="btn-hero-primary"
+          >
+            <span>Claim Free Audit</span>
+            <div class="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] bg-white rounded-full flex items-center justify-center text-[#f6921e] transition-transform duration-200 group-hover:rotate-45 font-bold font-satoshi">
+              <i data-lucide="arrow-up-right" class="w-2.5 h-2.5 stroke-[3]"></i>
+            </div>
+          </button>
+
+          <button
+            onclick="openCallModal()"
+            class="bg-white hover:bg-slate-50 rounded-[8px] text-slate-800 font-satoshi font-bold text-xs sm:text-sm py-3 px-5 sm:px-6 flex items-center justify-center gap-2 select-none cursor-pointer border border-slate-200 transition-all hover:scale-[1.02] active:scale-[0.98] group shadow-sm"
+            id="btn-hero-secondary"
+          >
+            <span>See Our Results</span>
+            <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="18px" fill="currentColor" class="text-slate-600 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+              <path d="m256-240-56-56 384-384H240v-80h480v480h-80v-344L256-240Z" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] sm:text-xs text-slate-500 font-satoshi font-medium select-none">
+          <span>Free evaluation</span>
+          <span class="text-slate-300">•</span>
+          <span>No commitment</span>
+          <span class="text-slate-300">•</span>
+          <span>Response within 24 hours</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ LOGO CAROUSEL ============ -->
+<div class="w-full bg-white border-b border-slate-200 flex flex-col justify-center">
+  <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10 border-l border-r border-slate-200">
+    <div class="text-center mb-6">
+      <h3 class="text-xs sm:text-[13px] font-extrabold tracking-widest text-slate-800 opacity-75 uppercase font-satoshi">
+        Certified Expertise That Supports Better Results
+      </h3>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 items-center justify-items-center" id="logo-carousel-grid"></div>
+  </div>
+</div>
+
+<!-- ============ SOCIAL PROOF ============ -->
+<div class="w-full bg-[#fcfbfa] border-b border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-l border-r border-slate-200">
+
+    <div class="text-center mb-12">
+      <span class="text-xs tracking-wider font-semibold text-black font-satoshi bg-white px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 mb-3 border border-[#f6921e]/20 shadow-[0_10px_25px_-5px_rgba(148,163,184,0.15)] select-none">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#f6921e] shrink-0"></span>
+        <span>Why SEO Company OC</span>
+      </span>
+      <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold font-satoshi text-slate-900 tracking-tight leading-tight">
+        Orange County's Most <br class="hidden sm:inline" />
+        Trusted <span class="font-playfair font-bold text-slate-900 opacity-[0.75] not-italic inline">Marketing Standards</span>
+      </h2>
+      <p class="text-sm text-slate-500 font-satoshi font-medium mt-3 max-w-lg mx-auto">
+        We don't settle for baseline traffic. We design premium, custom SEO ecosystems to maximize acquisition and brand authority.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 lg:gap-4" id="social-proof-grid"></div>
+
+    <div class="mt-12 flex justify-center">
+      <button
+        onclick="openCallModal()"
+        class="bg-[#f6921e] backdrop-blur-[2px] rounded-[8px] text-white font-satoshi font-bold text-sm py-4 px-8 flex items-center justify-center gap-2 select-none cursor-pointer transition-all hover:scale-[1.03] active:scale-[0.97] shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.35)] hover:shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.45),0_8px_30px_rgba(246,146,30,0.22)] group"
+      >
+        <span>See Our Success Standards</span>
+        <span class="text-lg transition-transform duration-250 group-hover:translate-x-1">→</span>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ WHY US ============ -->
+<div class="w-full bg-white border-b border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 border-l border-r border-slate-200">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+      <div class="lg:col-span-7 flex flex-col justify-center text-left">
+        <div class="mb-5">
+          <span class="text-xs tracking-wider font-semibold text-black font-satoshi bg-white px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 border border-[#f6921e]/20 shadow-[0_10px_25px_-5px_rgba(148,163,184,0.15)] select-none">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#f6921e] shrink-0"></span>
+            <span>Why businesses choose SEO Company OC</span>
+          </span>
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold font-satoshi text-slate-900 tracking-tight leading-tight mb-6">
+          We Care About Your Business <br class="hidden sm:inline" />
+          as Much <span class="font-playfair font-bold text-slate-900 opacity-[0.75] not-italic inline">As You Do</span>
+        </h2>
+
+        <p class="text-slate-600 font-satoshi font-medium text-sm sm:text-base leading-relaxed mb-8 max-w-2xl">
+          When you work with us, you're not just hiring an agency — you get direct access to our CEO, Max Sanchez, who personally reviews your business and maps out a strategy tailored to your goals. Every promise we make, we keep. You'll have his personal number so you can reach us any time, day or night.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-start gap-4">
+          <button
+            onclick="openCallModal()"
+            class="bg-[#f6921e] backdrop-blur-[2px] rounded-[8px] text-white font-satoshi font-bold text-sm py-3 px-6 flex items-center justify-center gap-2 select-none cursor-pointer transition-all hover:scale-[1.02] active:scale-[0.98] shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.35)] hover:shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.45),0_8px_25px_rgba(246,146,30,0.2)] group"
+          >
+            <span>Meet Max Sanchez</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 w-full flex justify-center">
+        <div class="relative w-full max-w-md lg:max-w-full aspect-[4/3] sm:aspect-video lg:aspect-square overflow-hidden rounded-2xl border-2 border-slate-200/85 shadow-sm">
+          <img
+            src="https://ovikbiswas.wordpress.com/wp-content/uploads/2026/05/the-girl-is-working-on-the-laptop-on-the-office-swiss-cheese-plant.jpg"
+            alt="Workspace focused illustration"
+            referrerpolicy="no-referrer"
+            class="w-full h-full object-cover select-none pointer-events-none transition-transform duration-700 hover:scale-[1.03]"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/10 via-transparent to-transparent pointer-events-none"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============ STATS ============ -->
+<div class="w-full bg-[#faf9f6] border-b border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 border-l border-r border-slate-200">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+      <div class="lg:col-span-5 flex flex-col justify-center text-left">
+        <div class="mb-5">
+          <span class="text-xs tracking-wider font-semibold text-black font-satoshi bg-white px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 border border-[#f6921e]/20 shadow-[0_10px_25px_-5px_rgba(148,163,184,0.15)] select-none">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#f6921e] shrink-0"></span>
+            <span>Our Statistics</span>
+          </span>
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold font-satoshi text-slate-900 tracking-tight leading-tight mb-6">
+          The Numbers Don't <br class="hidden sm:inline" />
+          Lie, SEO Is <br class="hidden sm:inline" />
+          <span class="font-playfair font-bold text-slate-900 opacity-75 block sm:inline">Non-Negotiable</span>
+        </h2>
+
+        <p class="text-slate-500 font-satoshi font-medium text-sm sm:text-base leading-relaxed mb-8 max-w-md">
+          Establishing search dominance isn't just about traffic — it's about digital survival. These core search engine benchmarks define your business ranking success.
+        </p>
+
+        <div>
+          <button
+            onclick="openCallModal()"
+            class="bg-white hover:bg-slate-50 rounded-[8px] text-slate-800 font-satoshi font-bold text-sm py-3 px-6 inline-flex items-center gap-2 select-none cursor-pointer border border-slate-200 transition-all hover:scale-[1.02] active:scale-[0.98] group shadow-sm max-w-fit"
+          >
+            <span>See All Stats</span>
+            <i data-lucide="arrow-up-right" class="w-4 h-4 text-slate-500 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 w-full flex flex-col gap-2 sm:gap-2.5 md:gap-3" id="stats-cascade"></div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============ SERVICES ============ -->
+<div class="w-full bg-[#fbfbfb] border-b border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 border-l border-r border-slate-200">
+
+    <div class="text-center mb-16">
+      <span class="text-xs tracking-wider font-semibold text-black font-satoshi bg-white px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 mb-3 border border-[#f6921e]/20 shadow-[0_10px_25px_-5px_rgba(148,163,184,0.15)] select-none">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#f6921e] shrink-0"></span>
+        <span>Our Services</span>
+      </span>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold font-satoshi text-slate-900 tracking-tight leading-tight">
+        Everything You Need to <br class="hidden sm:inline" />
+        Dominate <span class="font-playfair font-bold text-slate-900 opacity-75 block sm:inline">Search</span>
+      </h2>
+      <p class="text-sm sm:text-base text-slate-500 font-satoshi font-medium mt-3 max-w-2xl mx-auto">
+        From building your website to ranking it — we handle every piece of your digital presence so you can focus on running your business.
+      </p>
+    </div>
+
+    <div class="flex flex-col gap-6 lg:gap-8" id="services-list"></div>
+
+    <div class="text-center mt-12 sm:mt-16">
+      <button
+        onclick="openCallModal()"
+        class="bg-white hover:bg-slate-50 rounded-[8px] text-slate-800 font-satoshi font-bold text-sm py-3 px-6 inline-flex items-center gap-2 select-none cursor-pointer border border-slate-200 transition-all hover:scale-[1.02] active:scale-[0.98] group shadow-sm"
+      >
+        <span>View All Services</span>
+        <i data-lucide="arrow-right" class="w-4 h-4 text-slate-500 transition-transform duration-200 group-hover:translate-x-0.5"></i>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ FOUNDER ============ -->
+<div class="w-full bg-white border-b border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 border-l border-r border-slate-200">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+      <div class="lg:col-span-5 w-full flex justify-center order-2 lg:order-1">
+        <div class="relative w-full max-w-sm lg:max-w-full aspect-[4/3] sm:aspect-video lg:aspect-square overflow-hidden rounded-xl border-2 border-slate-200/80 shadow-sm bg-[#faf9f6]">
+          <img
+            src="https://www.seocompanyoc.com/wp-content/uploads/2022/07/orange-county-seo-expert-max-sanchez-1-480x357.jpg"
+            alt="Max Sanchez, Orange County SEO Expert"
+            referrerpolicy="no-referrer"
+            class="w-full h-full object-cover select-none pointer-events-none transition-transform duration-700 hover:scale-[1.03]"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/10 via-transparent to-transparent pointer-events-none"></div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 flex flex-col justify-center text-left order-1 lg:order-2">
+
+        <div class="mb-5">
+          <span class="text-xs tracking-wider font-semibold text-black font-satoshi bg-white px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 border border-[#f6921e]/20 shadow-[0_10px_25px_-5px_rgba(148,163,184,0.15)] select-none">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#f6921e] shrink-0"></span>
+            <span>Meet Your Orange County SEO Expert</span>
+          </span>
+        </div>
+
+        <div class="mb-6">
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold font-satoshi text-slate-900 tracking-tight leading-tight">
+            Max Sanchez
+          </h2>
+          <div class="flex items-center gap-3 mt-2.5">
+            <span class="w-8 h-[2px] bg-[#f6921e] opacity-80"></span>
+            <span class="text-sm sm:text-base font-bold uppercase tracking-wider text-slate-500 font-satoshi">
+              Founder & CEO
+            </span>
+          </div>
+        </div>
+
+        <p class="text-slate-600 font-satoshi font-semibold text-sm sm:text-base leading-relaxed mb-8">
+          Max founded SEO Company OC in 2008 with one mission: to help local businesses compete online. Over the past 14+ years, he has developed advanced, algorithm-proof SEO techniques across dozens of industries — and he applies that knowledge directly to every client account. When you call us, you speak to Max.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-start gap-4">
+          <button
+            onclick="openCallModal()"
+            class="bg-white hover:bg-slate-50 rounded-[8px] text-slate-800 font-satoshi font-bold text-sm py-3 px-6 flex items-center justify-center gap-2 select-none cursor-pointer border border-slate-200 transition-all hover:scale-[1.02] active:scale-[0.98] group shadow-sm max-w-fit"
+          >
+            <span>Read Max's Full Bio</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 text-slate-500 transition-transform duration-200 group-hover:translate-x-0.5"></i>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============ GROWTH AGENDA ============ -->
+<div class="w-full bg-[#fcfbfa] border-b border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 border-l border-r border-slate-200">
+
+    <div class="text-center mb-12">
+      <span class="text-xs tracking-wider font-semibold text-black font-satoshi bg-white px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 mb-3 border border-[#f6921e]/20 shadow-[0_10px_25px_-5px_rgba(148,163,184,0.15)] select-none">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#f6921e] shrink-0"></span>
+        <span>Our Commitment</span>
+      </span>
+      <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold font-satoshi text-slate-900 tracking-tight leading-tight">
+        Your Growth Is <br class="hidden sm:inline" />
+        Our Only <span class="font-playfair font-bold text-slate-900 opacity-[0.75] not-italic inline">Agenda</span>
+      </h2>
+      <p class="text-sm text-slate-500 font-satoshi font-medium mt-3 max-w-lg mx-auto">
+        We operate with complete alignment. No hollow vanity metrics—just steady, sustainable customer acquisition for your brand.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 lg:gap-4" id="growth-agenda-grid"></div>
+
+    <div class="mt-12 flex justify-center">
+      <button
+        onclick="openCallModal()"
+        class="bg-[#f6921e] backdrop-blur-[2px] rounded-[8px] text-white font-satoshi font-bold text-sm py-4 px-8 flex items-center justify-center gap-2 select-none cursor-pointer transition-all hover:scale-[1.03] active:scale-[0.97] shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.35)] hover:shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.45),0_8px_30px_rgba(246,146,30,0.22)] group"
+      >
+        <span>Align Your Growth Plan</span>
+        <span class="text-lg transition-transform duration-250 group-hover:translate-x-1">→</span>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ PROCESS ============ -->
+<div id="process-section" class="w-full bg-[#faf9f6]/40 border-b border-slate-200 animate-fade-in">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 border-l border-r border-slate-200">
+
+    <div class="text-center mb-16 lg:mb-20">
+      <span class="text-xs tracking-wider font-semibold text-black font-satoshi bg-white px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 mb-3 border border-[#f6921e]/20 shadow-[0_10px_25px_-5px_rgba(148,163,184,0.15)] select-none animate-pulse">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#f6921e] shrink-0"></span>
+        <span>Our SEO Process</span>
+      </span>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold font-satoshi text-slate-900 tracking-tight leading-tight">
+        How We Get You to <br class="hidden sm:inline" />
+        <span class="font-playfair font-bold text-slate-900 opacity-75 block sm:inline">Page One and Stay</span>
+      </h2>
+      <p class="text-sm sm:text-base text-slate-500 font-satoshi font-medium mt-4 max-w-2xl mx-auto leading-relaxed">
+        We don't guess — we execute a proven, step-by-step strategy that moves your business from invisible to unstoppable on Google.
+      </p>
+    </div>
+
+    <div class="relative w-full pb-8">
+
+      <div class="hidden lg:block absolute left-1/2 top-4 bottom-12 w-[4px] -translate-x-1/2 bg-slate-200/80 rounded-full">
+        <div id="process-progress-desktop" class="absolute top-0 left-0 w-full bg-[#f6921e] rounded-full transition-all duration-150 ease-out" style="height:0%"></div>
+      </div>
+
+      <div class="block lg:hidden absolute left-4 sm:left-6 top-4 bottom-12 w-[4px] bg-slate-250 rounded-full">
+        <div id="process-progress-mobile" class="absolute top-0 left-0 w-full bg-[#f6921e] rounded-full transition-all duration-150 ease-out" style="height:0%"></div>
+      </div>
+
+      <div class="flex flex-col gap-8 lg:gap-0" id="process-steps"></div>
+
+    </div>
+
+    <div class="mt-12 flex justify-center text-center">
+      <button
+        onclick="openAuditModal()"
+        class="bg-[#f6921e] backdrop-blur-[2px] rounded-[8px] text-white font-satoshi font-bold text-sm py-4 px-8 flex items-center justify-center gap-2.5 select-none cursor-pointer transition-all hover:scale-[1.03] active:scale-[0.97] shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.35)] hover:shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.45),0_8px_30px_rgba(246,146,30,0.22)] group"
+      >
+        <span>Start Your SEO Journey</span>
+        <div class="w-5 h-5 bg-white rounded-full flex items-center justify-center text-[#f6921e] transition-transform duration-200 group-hover:rotate-45 font-bold font-satoshi">
+          <i data-lucide="arrow-up-right" class="w-3 h-3 stroke-[3]"></i>
+        </div>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ CTA SECTION ============ -->
+<div class="w-full bg-white border-b border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 border-l border-r border-slate-200">
+
+    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-amber-500 via-[#f6921e] to-orange-600 text-white p-8 sm:p-12 lg:p-16 border border-[#f6921e]/30 shadow-[0_20px_50px_rgba(246,146,30,0.15)] transition-all duration-300 hover:shadow-2xl group">
+
+      <div class="absolute -top-24 -right-24 w-80 h-80 bg-white/20 rounded-full blur-3xl pointer-events-none group-hover:scale-110 transition-transform duration-700"></div>
+      <div class="absolute -bottom-24 -left-24 w-80 h-80 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-12">
+
+        <div class="max-w-3xl flex-1 text-left">
+          <div class="mb-4">
+            <span class="text-xs tracking-wider font-semibold text-black font-satoshi bg-white px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 border border-white/40 shadow-sm select-none">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#f6921e] shrink-0"></span>
+              <span>Website Evaluation</span>
+            </span>
+          </div>
+
+          <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-[38px] leading-[1.18] font-bold font-satoshi text-white tracking-tight mb-4 text-balance">
+            Not Sure Where Your Website Stands? Let Us Show You.
+          </h2>
+
+          <p class="text-orange-50 font-satoshi font-semibold text-xs sm:text-sm md:text-base leading-relaxed text-pretty">
+            Our free SEO marketing evaluation (valued at $350) gives you a clear picture of how your website performs - what's working, what's holding you back, and exactly what we would do to fix it. No strings attached.
+          </p>
+        </div>
+
+        <div class="flex-shrink-0 flex items-center justify-start lg:justify-end">
+          <button
+            onclick="openAuditModal()"
+            class="bg-white rounded-[8px] text-[#f6921e] font-satoshi font-bold text-sm py-4 px-8 flex items-center justify-center gap-2.5 select-none cursor-pointer transition-all hover:scale-[1.03] active:scale-[0.97] shadow-md hover:shadow-lg group"
+          >
+            <span>Free Audit</span>
+            <div class="w-5 h-5 bg-[#f6921e] rounded-full flex items-center justify-center text-white transition-transform duration-200 group-hover:rotate-45 font-bold font-satoshi">
+              <i data-lucide="arrow-up-right" class="w-3 h-3 stroke-[3]"></i>
+            </div>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ TEAM EXPERTISE ============ -->
+<div class="w-full bg-[#faf9f6]/40 border-b border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 border-l border-r border-slate-200">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+      <div class="lg:col-span-5 w-full order-2 lg:order-1">
+        <div class="relative w-full aspect-[4/3] sm:aspect-video lg:aspect-[4/5] overflow-hidden rounded-2xl border-2 border-slate-200/80 bg-[#faf9f6]">
+          <img
+            src="https://ovikbiswas.wordpress.com/wp-content/uploads/2026/06/this_girl_and_more_2_202606020311.jpg"
+            alt="Our full-stack team working in the office"
+            referrerpolicy="no-referrer"
+            class="w-full h-full object-cover select-none pointer-events-none transition-transform duration-750 hover:scale-[1.03]"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/10 via-transparent to-transparent pointer-events-none"></div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 flex flex-col justify-center text-left order-1 lg:order-2">
+
+        <div class="mb-5">
+          <span class="text-xs tracking-wider font-semibold text-black font-satoshi bg-white px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 border border-[#f6921e]/20 select-none">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#f6921e] shrink-0"></span>
+            <span>Team Expertise</span>
+          </span>
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold font-satoshi text-slate-900 tracking-tight leading-tight mb-4 text-balance">
+          A Full-Stack Team Dedicated to <span class="font-playfair font-bold text-slate-900 opacity-[0.75] not-italic inline">Your Results</span>
+        </h2>
+
+        <p class="text-slate-500 font-satoshi font-semibold text-sm sm:text-base leading-relaxed mb-8 max-w-2xl">
+          We don't outsource. Every specialist on our team was hired to be exceptional in their discipline.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6" id="team-expertise-grid"></div>
+
+        <div class="mt-8 flex justify-start">
+          <button
+            onclick="openCallModal()"
+            class="bg-[#f6921e] backdrop-blur-[2px] rounded-[8px] text-white font-satoshi font-bold text-sm py-4 px-8 flex items-center justify-center gap-2 select-none cursor-pointer transition-all hover:scale-[1.03] active:scale-[0.97] shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.35)] hover:shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.45),0_8px_30px_rgba(246,146,30,0.22)] group"
+          >
+            <span>Harness Our Expertise</span>
+            <span class="text-lg transition-transform duration-250 group-hover:translate-x-1">→</span>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============ TESTIMONIALS ============ -->
+<div class="w-full bg-white border-b border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 border-l border-r border-slate-200">
+
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12 sm:mb-16 pb-8 border-b border-slate-200">
+
+      <div class="text-left">
+        <div class="mb-4">
+          <span class="text-xs tracking-wider font-semibold text-black font-satoshi bg-white px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 border border-[#f6921e]/20 shadow-[0_10px_25px_-5px_rgba(148,163,184,0.15)] select-none">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#f6921e] shrink-0"></span>
+            <span>Client Testimonials</span>
+          </span>
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold font-satoshi text-slate-900 tracking-tight leading-tight mb-3">
+          What Our <span class="font-playfair font-bold text-slate-900 opacity-[0.75] not-italic inline">Clients Say</span>
+        </h2>
+        <p class="text-slate-500 font-satoshi font-semibold text-sm sm:text-base leading-relaxed">
+          Real success stories from verified Orange County businesses.
+        </p>
+      </div>
+
+      <div class="flex-shrink-0 flex flex-col items-start md:items-end gap-2 bg-slate-50 border border-slate-200 rounded-xl p-4 shadow-sm">
+        <div class="flex items-center gap-2">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 font-satoshi">
+            Highly Rated On
+          </span>
+          <img
+            src="https://purepng.com/public/uploads/large/purepng.com-google-logo-2015brandlogobrand-logoiconssymbolslogosgoogle-6815229372333mqrr.png"
+            alt="Google Logo"
+            referrerpolicy="no-referrer"
+            class="h-5 object-contain select-none pointer-events-none"
+          />
+        </div>
+        <div class="flex items-center gap-1" id="testimonials-header-stars"></div>
+      </div>
+
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-start" id="testimonials-grid"></div>
+
+    <div class="mt-12 sm:mt-16 flex justify-center">
+      <button
+        onclick="openCallModal()"
+        class="bg-[#f6921e] backdrop-blur-[2px] rounded-[8px] text-white font-satoshi font-bold text-sm py-4 px-8 flex items-center justify-center gap-2 select-none cursor-pointer transition-all hover:scale-[1.03] active:scale-[0.97] shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.35)] hover:shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.45),0_8px_30px_rgba(246,146,30,0.22)] group"
+      >
+        <span>See More Reviews on Google</span>
+        <span class="text-lg transition-transform duration-250 group-hover:translate-x-1">→</span>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ BLOG ============ -->
+<div class="w-full bg-[#faf9f6]/40 border-b border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 border-l border-r border-slate-200">
+
+    <div class="text-center mb-12 sm:mb-16">
+      <div class="mb-4">
+        <span class="text-xs tracking-wider font-semibold text-black font-satoshi bg-white px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 border border-[#f6921e]/20 shadow-[0_10px_25px_-5px_rgba(148,163,184,0.15)] select-none">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#f6921e] shrink-0"></span>
+          <span>Our Blog</span>
+        </span>
+      </div>
+
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold font-satoshi text-slate-900 tracking-tight leading-tight max-w-2xl mx-auto text-balance">
+        Stay ahead By Reading the <span class="font-playfair font-bold text-slate-900 opacity-[0.75] not-italic inline">Algorithm</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-8 items-stretch mb-12 sm:mb-16" id="blog-grid"></div>
+
+    <div class="flex justify-center text-center">
+      <button
+        onclick="openAuditModal()"
+        class="bg-white hover:bg-slate-50 rounded-[8px] text-slate-800 font-satoshi font-bold text-sm py-3.5 px-8 inline-flex items-center gap-2 select-none cursor-pointer border-2 border-slate-200 transition-all hover:scale-[1.02] active:scale-[0.98] group shadow-sm max-w-fit"
+      >
+        <span>See all blog</span>
+        <i data-lucide="arrow-up-right" class="w-4 h-4 text-slate-500 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ COMMUNITY GIVING ============ -->
+<div class="w-full bg-white border-b border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 border-l border-r border-slate-200">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+      <div class="lg:col-span-7 flex flex-col justify-center text-left">
+
+        <div class="mb-5">
+          <span class="text-xs tracking-wider font-semibold text-black font-satoshi bg-white px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 border border-[#f6921e]/20 select-none">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#f6921e] shrink-0"></span>
+            <span>Community Impact</span>
+          </span>
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold font-satoshi text-slate-900 tracking-tight leading-tight mb-5 text-balance">
+          Giving Back to the Communities <span class="font-playfair font-bold text-slate-900 opacity-[0.75] not-italic inline">We Serve</span>
+        </h2>
+
+        <p class="text-slate-500 font-satoshi font-semibold text-sm sm:text-base leading-relaxed mb-8 max-w-2xl">
+          Every year, SEO Company OC donates 10% of all sales to bring Christmas to children in need across Los Angeles and Orange County — through USPS Operation Santa, responding directly to letters written to Santa. In 2023 and 2024 we were proud to make a difference, and in 2025 we're doing it again.
+        </p>
+
+        <div class="flex items-start">
+          <button
+            onclick="openAuditModal()"
+            class="bg-[#f6921e] backdrop-blur-[2px] rounded-[8px] text-white font-satoshi font-bold text-sm py-4 px-8 flex items-center justify-center gap-2 select-none cursor-pointer transition-all hover:scale-[1.03] active:scale-[0.97] shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.35)] hover:shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.45),0_8px_30px_rgba(246,146,30,0.22)] group"
+          >
+            <span>See the Letters We've Responded</span>
+            <span class="text-lg transition-transform duration-250 group-hover:translate-x-1">→</span>
+          </button>
+        </div>
+
+      </div>
+
+      <div class="lg:col-span-5 w-full">
+        <div class="relative w-full aspect-[4/3] sm:aspect-video lg:aspect-[4/5] overflow-hidden rounded-2xl border-2 border-slate-200/80 bg-[#faf9f6]">
+          <img
+            src="https://ovikbiswas.wordpress.com/wp-content/uploads/2026/06/a_santa_clause_is_making_202606020305.jpg"
+            alt="Santa Claus reading Christmas letters from children"
+            referrerpolicy="no-referrer"
+            class="w-full h-full object-cover select-none pointer-events-none transition-transform duration-750 hover:scale-[1.03]"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/10 via-transparent to-transparent pointer-events-none"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============ CONTACT ============ -->
+<div class="w-full bg-[#faf9f6]/40 border-b border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 border-l border-r border-slate-200">
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+
+      <div class="lg:col-span-5 flex flex-col justify-start text-left">
+        <div class="mb-5">
+          <span class="text-xs tracking-wider font-semibold text-black font-satoshi bg-white px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 border border-[#f6921e]/20 shadow-[0_10px_25px_-5px_rgba(148,163,184,0.15)] select-none">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#f6921e] shrink-0"></span>
+            <span>Get In Touch</span>
+          </span>
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold font-satoshi text-slate-900 tracking-tight leading-tight mb-5">
+          Ready to Grow? <span class="font-playfair font-bold text-slate-900 opacity-[0.75] not-italic inline">Let's Talk</span>
+        </h2>
+
+        <p class="text-slate-500 font-satoshi font-semibold text-sm sm:text-base leading-relaxed mb-10 max-w-lg">
+          Tell us about your business and we'll get back to you within 24 hours with a clear plan for improving your online visibility. No sales pressure — just honest advice from people who know SEO.
+        </p>
+
+        <div class="flex flex-col gap-6 pt-6 border-t border-slate-200/80">
+
+          <div class="flex items-center gap-4 group">
+            <div class="w-11 h-11 rounded-full border border-[#f6921e]/20 bg-[#f6921e]/10 flex items-center justify-center text-[#f6921e] shrink-0 transition-colors group-hover:bg-[#f6921e]/20">
+              <i data-lucide="phone" class="w-4 h-4 stroke-[2.5]"></i>
+            </div>
+            <div>
+              <span class="block text-[11px] font-extrabold uppercase tracking-widest text-slate-400 font-satoshi">
+                Call Us Directly
+              </span>
+              <a href="tel:7142438571" class="text-base font-bold font-satoshi text-slate-800 hover:text-[#f6921e] transition-colors">
+                (714) 243-8571
+              </a>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 group">
+            <div class="w-11 h-11 rounded-full border border-[#f6921e]/20 bg-[#f6921e]/10 flex items-center justify-center text-[#f6921e] shrink-0 transition-colors group-hover:bg-[#f6921e]/20">
+              <i data-lucide="mail" class="w-4 h-4 stroke-[2.5]"></i>
+            </div>
+            <div>
+              <span class="block text-[11px] font-extrabold uppercase tracking-widest text-slate-400 font-satoshi">
+                Send An Email
+              </span>
+              <a href="mailto:info@seocompanyoc.com" class="text-base font-bold font-satoshi text-slate-800 hover:text-[#f6921e] transition-colors">
+                info@seocompanyoc.com
+              </a>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 group">
+            <div class="w-11 h-11 rounded-full border border-[#f6921e]/20 bg-[#f6921e]/10 flex items-center justify-center text-[#f6921e] shrink-0 transition-colors group-hover:bg-[#f6921e]/20">
+              <i data-lucide="map-pin" class="w-4 h-4 stroke-[2.5]"></i>
+            </div>
+            <div>
+              <span class="block text-[11px] font-extrabold uppercase tracking-widest text-slate-400 font-satoshi">
+                Visit Our Office
+              </span>
+              <span class="text-sm font-bold font-satoshi text-slate-700">
+                1407 N. Batavia St. #204, Orange, CA 92867
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="lg:col-span-7">
+        <div class="p-6 sm:p-10 rounded-2xl bg-white border-2 border-slate-200/80 shadow-md">
+          <form id="contact-form" class="space-y-6 text-left">
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+              <div class="flex flex-col gap-2">
+                <label for="contact-name" class="text-xs font-bold text-slate-700 uppercase tracking-wider font-satoshi">
+                  Name <span class="text-rose-500">*</span>
+                </label>
+                <input
+                  type="text" id="contact-name" name="name" required
+                  placeholder="Your Name"
+                  class="w-full bg-[#faf9f6]/40 border-2 border-slate-200 rounded-lg py-3 px-4 text-sm font-semibold font-satoshi text-slate-800 outline-none focus:border-[#f6921e]/60 transition-colors placeholder:text-slate-400"
+                />
+              </div>
+              <div class="flex flex-col gap-2">
+                <label for="contact-company" class="text-xs font-bold text-slate-700 uppercase tracking-wider font-satoshi">
+                  Company
+                </label>
+                <input
+                  type="text" id="contact-company" name="company"
+                  placeholder="Your Business Name"
+                  class="w-full bg-[#faf9f6]/40 border-2 border-slate-200 rounded-lg py-3 px-4 text-sm font-semibold font-satoshi text-slate-800 outline-none focus:border-[#f6921e]/60 transition-colors placeholder:text-slate-400"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+              <div class="flex flex-col gap-2">
+                <label for="contact-phone" class="text-xs font-bold text-slate-700 uppercase tracking-wider font-satoshi">
+                  Phone <span class="text-rose-500">*</span>
+                </label>
+                <input
+                  type="tel" id="contact-phone" name="phone" required
+                  placeholder="(555) 000-0000"
+                  class="w-full bg-[#faf9f6]/40 border-2 border-slate-200 rounded-lg py-3 px-4 text-sm font-semibold font-satoshi text-slate-800 outline-none focus:border-[#f6921e]/60 transition-colors placeholder:text-slate-400"
+                />
+              </div>
+              <div class="flex flex-col gap-2">
+                <label for="contact-email" class="text-xs font-bold text-slate-700 uppercase tracking-wider font-satoshi">
+                  Email <span class="text-rose-500">*</span>
+                </label>
+                <input
+                  type="email" id="contact-email" name="email" required
+                  placeholder="you@example.com"
+                  class="w-full bg-[#faf9f6]/40 border-2 border-slate-200 rounded-lg py-3 px-4 text-sm font-semibold font-satoshi text-slate-800 outline-none focus:border-[#f6921e]/60 transition-colors placeholder:text-slate-400"
+                />
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-2">
+              <label for="contact-message" class="text-xs font-bold text-slate-700 uppercase tracking-wider font-satoshi">
+                Message
+              </label>
+              <textarea
+                id="contact-message" name="message" rows="4"
+                placeholder="Tell us about your digital goals, current traffic standing, or custom targets..."
+                class="w-full bg-[#faf9f6]/40 border-2 border-slate-200 rounded-lg py-3 px-4 text-sm font-semibold font-satoshi text-slate-800 outline-none focus:border-[#f6921e]/60 transition-colors placeholder:text-slate-400 resize-none"
+              ></textarea>
+            </div>
+
+            <div class="flex flex-col gap-2.5">
+              <span class="text-xs font-bold text-slate-700 uppercase tracking-wider font-satoshi">
+                Contact via:
+              </span>
+
+              <div class="flex flex-wrap gap-4" id="contact-preference-group"></div>
+            </div>
+
+            <div class="pt-2">
+              <button
+                type="submit" id="contact-submit-btn"
+                class="w-full bg-[#f6921e] rounded-[8px] text-white font-satoshi font-bold text-sm py-4 px-8 flex items-center justify-center gap-2.5 select-none cursor-pointer transition-all hover:scale-[1.01] active:scale-[0.99] shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.35)] hover:shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.45),0_8px_30px_rgba(246,146,30,0.22)] group disabled:bg-slate-350 disabled:cursor-not-allowed"
+              >
+                <span id="contact-submit-label">Send Message</span>
+                <i data-lucide="send" class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
+              </button>
+            </div>
+
+            <div id="contact-success" class="hidden p-4 rounded-xl bg-emerald-50 border border-emerald-100 text-left transition-all duration-300 animate-slide-up">
+              <p class="text-xs sm:text-sm font-bold text-emerald-800 font-satoshi leading-normal">
+                Thank you! We have received your query and one of our OC SEO experts will prepare your custom plan and reach out to you within 24 hours.
+              </p>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="w-full bg-white border-b border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-12 border-l border-r border-slate-200">
+
+    <div class="pt-4 pb-10 border-b border-slate-200 select-none overflow-hidden">
+      <h2 class="text-[11.2vw] md:text-[11.3vw] xl:text-[158px] font-bold font-satoshi text-[#301d06] tracking-tighter text-center leading-none whitespace-nowrap">
+        SEO CompanyOC
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 py-16 pb-16 border-b border-slate-200 text-left">
+
+      <div class="lg:col-span-4 flex flex-col items-start space-y-6">
+        <div class="flex items-center">
+          <img
+            src="https://www.seocompanyoc.com/wp-content/uploads/2025/09/cropped-Logo-and-Slogan-sep-800x160.png"
+            alt="SEO Company OC Logo"
+            class="h-10 w-auto object-contain"
+            referrerpolicy="no-referrer"
+          />
+        </div>
+
+        <p class="text-slate-500 font-satoshi font-semibold text-sm leading-relaxed">
+          Orange County's SEO Agency Since 2008
+        </p>
+
+        <div class="pt-2">
+          <span class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-400 font-satoshi mb-3">
+            Industry Trust &amp; Reviews
+          </span>
+          <div class="flex flex-wrap items-center gap-5">
+            <div class="h-10 flex items-center justify-center">
+              <img src="https://www.seocompanyoc.com/wp-content/uploads/2026/05/yelp_waitlist_logo-300x151.png" alt="Yelp badge" class="h-6 w-auto object-contain" referrerpolicy="no-referrer" />
+            </div>
+            <div class="h-10 flex items-center justify-center">
+              <img src="https://www.seocompanyoc.com/wp-content/uploads/2026/05/google-customer-review-logo-300x125.png" alt="Google rating badge" class="h-6 w-auto object-contain" referrerpolicy="no-referrer" />
+            </div>
+            <div class="h-10 flex items-center justify-center">
+              <img src="https://www.seocompanyoc.com/wp-content/uploads/2026/05/bark-logoo-300x88.png" alt="Bark.com badge" class="h-[18px] w-auto object-contain" referrerpolicy="no-referrer" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-2 flex flex-col space-y-4">
+        <span class="text-xs font-bold uppercase tracking-widest text-slate-400 font-satoshi">
+          Navigation
+        </span>
+        <ul class="space-y-2.5 text-sm font-satoshi font-bold text-slate-600">
+          <li><a href="#pricing" onclick="event.preventDefault(); openCallModal();" class="hover:text-[#f6921e] transition-colors">Pricing</a></li>
+          <li><a href="#reviews" onclick="event.preventDefault(); openCallModal();" class="hover:text-[#f6921e] transition-colors">SEO Proof</a></li>
+          <li><a href="#reviews" onclick="event.preventDefault(); openCallModal();" class="hover:text-[#f6921e] transition-colors">Reviews</a></li>
+          <li><a href="#blog" onclick="event.preventDefault(); openAuditModal();" class="hover:text-[#f6921e] transition-colors">Blog</a></li>
+          <li><a href="#policy" onclick="event.preventDefault(); openAuditModal();" class="hover:text-[#f6921e] transition-colors">Site Policy</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-3 flex flex-col space-y-4">
+        <span class="text-xs font-bold uppercase tracking-widest text-[#f6921e] font-satoshi">
+          About
+        </span>
+        <ul class="space-y-2.5 text-sm font-satoshi font-semibold text-slate-500">
+          <li class="font-bold text-slate-700 hover:text-slate-900 transition-colors cursor-default">SEO Company CA</li>
+          <li class="hover:text-slate-900 transition-colors cursor-default">Local SEO</li>
+          <li class="hover:text-slate-900 transition-colors cursor-default">Marketing Firm</li>
+          <li class="hover:text-slate-900 transition-colors cursor-default font-bold text-slate-700">OC SEO Expert</li>
+          <li class="hover:text-slate-900 transition-colors cursor-default">OC Marketing Agency</li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-3 flex flex-col space-y-4">
+        <span class="text-xs font-bold uppercase tracking-widest text-slate-400 font-satoshi">
+          Contact
+        </span>
+        <ul class="space-y-3.5 text-sm font-satoshi font-semibold text-slate-600">
+          <li class="flex items-center gap-2.5 group">
+            <i data-lucide="phone" class="w-4 h-4 text-[#f6921e] shrink-0"></i>
+            <a href="tel:7142438571" class="font-bold text-slate-800 hover:text-[#f6921e] transition-colors">(714) 243-8571</a>
+          </li>
+          <li class="flex items-center gap-2.5 group">
+            <i data-lucide="mail" class="w-4 h-4 text-[#f6921e] shrink-0"></i>
+            <a href="mailto:info@seocompanyoc.com" class="font-bold text-slate-800 hover:text-[#f6921e] transition-colors break-all">info@seocompanyoc.co</a>
+          </li>
+          <li class="flex items-start gap-2.5 group">
+            <i data-lucide="map-pin" class="w-4 h-4 text-[#f6921e] shrink-0 mt-0.5"></i>
+            <span class="text-slate-700 font-medium">1407 N. Batavia St. #204 Orange, CA 92867</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="pt-8 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-center">
+      <div class="text-xs font-satoshi font-bold text-slate-400">
+        &copy; 2026 SEO Company Orange County, Inc. All rights reserved.
+      </div>
+      <div class="flex items-center gap-6 text-xs font-satoshi font-bold text-slate-500">
+        <a href="#policy" onclick="event.preventDefault(); openAuditModal();" class="hover:text-[#f6921e] transition-colors">Privacy Policy</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+</div> <!-- /w-full wrapper -->
+
+<!-- ============ CALL MODAL ============ -->
+<div id="call-modal-overlay" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4">
+  <div class="absolute inset-0 bg-slate-950/60 backdrop-blur-md" onclick="closeCallModal()"></div>
+
+  <div class="modal-card relative w-full max-w-lg overflow-hidden rounded-[24px] bg-white text-slate-900 border border-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.15)] z-10">
+    <button onclick="closeCallModal()" class="absolute right-4 top-4 rounded-full p-1 text-slate-400 hover:bg-slate-50 hover:text-slate-600 transition-colors z-20" id="close-call-modal">
+      <i data-lucide="x" class="w-5 h-5"></i>
+    </button>
+
+    <div class="h-2 bg-[#f6921e] w-full"></div>
+
+    <div class="p-6 md:p-8">
+
+      <!-- Step 1: Date & Time -->
+      <div id="call-step-1">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="p-2.5 bg-orange-50 text-[#f6921e] rounded-xl">
+            <i data-lucide="calendar" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold font-satoshi text-slate-900">Select a Date &amp; Time</h3>
+            <p class="text-xs text-slate-400">Schedule a quick 15-min discovery call</p>
+          </div>
+        </div>
+
+        <p class="text-sm text-slate-600 mb-6">
+          Our team will review your current search rankings and share 3 actionable strategies to accelerate your local Google presence.
+        </p>
+
+        <div class="space-y-5">
+          <div>
+            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Select Date</label>
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-2" id="call-date-options"></div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Available Time Slots</label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-[140px] overflow-y-auto pr-1" id="call-time-options"></div>
+          </div>
+        </div>
+
+        <div class="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between">
+          <span class="text-xs text-slate-400">Step 1 of 3</span>
+          <button
+            type="button" id="call-continue-btn" disabled
+            onclick="callModalNextStep()"
+            class="py-2 px-5 text-sm font-semibold rounded-[8px] flex items-center gap-1.5 transition-all bg-slate-100 text-slate-400 cursor-not-allowed"
+          >
+            Continue
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: Contact info -->
+      <div id="call-step-2" class="hidden">
+        <form onsubmit="callModalSubmit(event)">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2.5 bg-orange-50 text-[#f6921e] rounded-xl">
+              <i data-lucide="phone-call" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold font-satoshi text-slate-900">Your Contact Information</h3>
+              <p class="text-xs text-slate-400" id="call-selected-datetime"></p>
+            </div>
+          </div>
+
+          <div class="space-y-4 my-6">
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 uppercase tracking-widest mb-1.5">Full Name *</label>
+              <input type="text" id="call-name" required placeholder="John Doe"
+                class="w-full text-sm px-4 py-2.5 rounded-xl border border-slate-200 outline-none focus:border-[#f6921e] focus:ring-1 focus:ring-[#f6921e] transition-all bg-slate-50/50" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 uppercase tracking-widest mb-1.5">Work Email Address *</label>
+              <input type="email" id="call-email" required placeholder="john@company.com"
+                class="w-full text-sm px-4 py-2.5 rounded-xl border border-slate-200 outline-none focus:border-[#f6921e] focus:ring-1 focus:ring-[#f6921e] transition-all bg-slate-50/50" />
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-slate-500 uppercase tracking-widest mb-1.5">Website (Optional)</label>
+                <input type="text" id="call-website" placeholder="www.company.com"
+                  class="w-full text-sm px-4 py-2.5 rounded-xl border border-slate-200 outline-none focus:border-[#f6921e] focus:ring-1 focus:ring-[#f6921e] transition-all bg-slate-50/50" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-500 uppercase tracking-widest mb-1.5">Monthly SEO Budget</label>
+                <select id="call-budget"
+                  class="w-full text-sm px-3 py-2.5 rounded-xl border border-slate-200 outline-none focus:border-[#f6921e] focus:ring-1 focus:ring-[#f6921e] transition-all bg-slate-50/50">
+                  <option>$1,000 - $3,000 / mo</option>
+                  <option>$3,000 - $5,000 / mo</option>
+                  <option>$5000 - $10,000 / mo</option>
+                  <option>$10,000+ / mo</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between">
+            <button type="button" onclick="callModalGoToStep(1)" class="px-4 py-2 text-sm text-slate-500 hover:text-slate-800 transition-colors">Back</button>
+            <button type="submit" class="py-2.5 px-6 text-sm font-semibold rounded-[8px] bg-[#f6921e] text-white hover:opacity-95 shadow-sm transition-all shadow-orange-500/10 cursor-pointer">Confirm Booking</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Step 3: Success -->
+      <div id="call-step-3" class="hidden text-center py-6">
+        <div class="mx-auto w-16 h-16 bg-emerald-50 text-emerald-500 rounded-full flex items-center justify-center mb-4">
+          <i data-lucide="check" class="w-8 h-8 stroke-[2.5]"></i>
+        </div>
+
+        <h3 class="text-2xl font-bold font-satoshi text-slate-900 mb-2">Call Scheduled Successfully!</h3>
+
+        <p class="text-sm text-slate-500 max-w-sm mx-auto mb-6">
+          Thank you, <span class="font-semibold text-slate-800" id="call-success-name"></span>. A calendar invitation has been sent to <span class="font-semibold text-slate-800" id="call-success-email"></span>.
+        </p>
+
+        <div class="bg-slate-50 rounded-2xl p-4 text-left max-w-sm mx-auto space-y-2 border border-slate-100 text-xs text-slate-600 mb-6">
+          <div class="flex justify-between">
+            <span class="font-semibold text-slate-400">AGENT:</span>
+            <span class="font-bold text-slate-700">SEOcompanyOC Specialist</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="font-semibold text-slate-400">DATE:</span>
+            <span class="font-medium text-slate-800" id="call-success-date"></span>
+          </div>
+          <div class="flex justify-between">
+            <span class="font-semibold text-slate-400">TIME:</span>
+            <span class="font-medium text-slate-800" id="call-success-time"></span>
+          </div>
+        </div>
+
+        <button type="button" onclick="closeCallModal()" class="py-2.5 px-6 font-semibold text-sm rounded-[8px] bg-slate-900 hover:bg-slate-800 text-white transition-colors">Done</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============ AUDIT MODAL ============ -->
+<div id="audit-modal-overlay" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4">
+  <div class="absolute inset-0 bg-slate-950/60 backdrop-blur-md" onclick="closeAuditModal()"></div>
+
+  <div class="modal-card relative w-full max-w-xl overflow-hidden rounded-[24px] bg-white text-slate-900 border border-slate-100 shadow-[0_22px_55px_rgba(0,0,0,0.18)] z-10">
+    <button onclick="closeAuditModal()" class="absolute right-4 top-4 rounded-full p-1 text-slate-400 hover:bg-slate-50 hover:text-slate-600 transition-colors z-20" id="close-audit-modal">
+      <i data-lucide="x" class="w-5 h-5"></i>
+    </button>
+
+    <div class="h-2 bg-[#f6921e] w-full"></div>
+
+    <div class="p-6 md:p-8">
+
+      <!-- Step 1: Enter site/email -->
+      <form id="audit-step-1" onsubmit="auditModalStart(event)">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="p-2.5 bg-orange-50 text-[#f6921e] rounded-xl flex items-center justify-center">
+            <i data-lucide="sparkles" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold font-satoshi text-slate-900">Claim Your Free SEO Audit</h3>
+            <p class="text-xs text-slate-400">Get standard-defining search insights in under 4 seconds.</p>
+          </div>
+        </div>
+
+        <p class="text-sm text-slate-600 mb-6">
+          Enter your website URL below to diagnostic-test your speed, keywords, and domain health. Our live Orange County ranking engines will fetch and evaluate your active scores.
+        </p>
+
+        <div class="space-y-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Your Website Link *</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                <i data-lucide="globe" class="w-4 h-4"></i>
+              </div>
+              <input type="text" id="audit-website" required placeholder="https://mybusiness.com"
+                class="w-full text-sm pl-10 pr-4 py-3 rounded-xl border border-slate-200 outline-none focus:border-[#f6921e] focus:ring-1 focus:ring-[#f6921e] transition-all bg-slate-50/50" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Your Best Email *</label>
+            <input type="email" id="audit-email" required placeholder="john@mybusiness.com"
+              class="w-full text-sm px-4 py-3 rounded-xl border border-slate-200 outline-none focus:border-[#f6921e] focus:ring-1 focus:ring-[#f6921e] transition-all bg-slate-50/50" />
+          </div>
+        </div>
+
+        <div class="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between">
+          <span class="text-xs text-slate-400">No credit card required</span>
+          <button type="submit" class="py-3 px-6 text-sm font-semibold text-white rounded-[8px] bg-[#f6921e] shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.35)] flex items-center gap-1.5 hover:opacity-95 transition-all cursor-pointer">
+            Analyze Site
+            <i data-lucide="search" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </form>
+
+      <!-- Step 2: Progress -->
+      <div id="audit-step-2" class="hidden py-8 text-center">
+        <div class="relative w-28 h-28 mx-auto mb-6 flex items-center justify-center">
+          <div class="absolute inset-0 border-4 border-slate-100 rounded-full"></div>
+          <svg class="absolute inset-0 w-full h-full transform -rotate-95">
+            <circle cx="56" cy="56" r="52" class="stroke-[#f6921e]" stroke-width="5" fill="transparent"
+              stroke-dasharray="326.7" id="audit-progress-circle" stroke-dashoffset="326.7" stroke-linecap="round" />
+          </svg>
+          <span class="text-2xl font-bold font-satoshi text-slate-900" id="audit-progress-pct">0%</span>
+        </div>
+
+        <h3 class="text-lg font-bold text-slate-800 mb-1 max-w-sm mx-auto min-h-[28px] leading-tight" id="audit-progress-text">
+          Initializing crawler...
+        </h3>
+        <p class="text-xs text-slate-400">
+          Scanning <span id="audit-progress-site"></span>... please keep this dialogue open
+        </p>
+      </div>
+
+      <!-- Step 3: Results -->
+      <div id="audit-step-3" class="hidden">
+        <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
+          <div class="flex items-center gap-2">
+            <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></div>
+            <span class="text-xs uppercase tracking-wider font-bold text-emerald-600">Analysis Complete</span>
+          </div>
+          <span class="text-xs text-slate-400 font-mono">Target: <span id="audit-result-site"></span></span>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3 mb-6">
+          <div class="p-3 bg-red-50/70 border border-red-100 rounded-2xl text-center">
+            <span class="block text-[10px] uppercase font-bold tracking-wider text-red-500 mb-1">Performance</span>
+            <span class="text-2xl font-black text-red-650">48/100</span>
+          </div>
+          <div class="p-3 bg-orange-50/70 border border-orange-100 rounded-2xl text-center">
+            <span class="block text-[10px] uppercase font-bold tracking-wider text-orange-500 mb-1">SEO Quality</span>
+            <span class="text-2xl font-black text-orange-650">62/100</span>
+          </div>
+          <div class="p-3 bg-emerald-50/70 border border-emerald-100 rounded-2xl text-center">
+            <span class="block text-[10px] uppercase font-bold tracking-wider text-emerald-500 mb-1">Mobile Score</span>
+            <span class="text-2xl font-black text-emerald-650">84/100</span>
+          </div>
+        </div>
+
+        <h4 class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-3">Top Priority SEO Enhancements</h4>
+        <ul class="space-y-3 mb-6">
+          <li class="flex items-start gap-2.5 text-sm text-slate-700">
+            <div class="p-0.5 rounded bg-red-100 text-red-500 mt-0.5">
+              <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i>
+            </div>
+            <div>
+              <strong class="text-slate-900 font-semibold mb-0.5 block">Slow Image Resource Loading</strong>
+              <p class="text-xs text-slate-500">Compress huge banner assets. Speed optimization will improve Google rankings by an estimated 14%.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-slate-700">
+            <div class="p-0.5 rounded bg-amber-100 text-amber-500 mt-0.5">
+              <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i>
+            </div>
+            <div>
+              <strong class="text-slate-900 font-semibold mb-0.5 block">Missing Keyword Focus</strong>
+              <p class="text-xs text-slate-500">Your homepage has undefined content hierarchy and is missing target locations in meta headers.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-slate-700">
+            <div class="p-0.5 rounded bg-emerald-100 text-emerald-500 mt-0.5">
+              <i data-lucide="check" class="w-3.5 h-3.5"></i>
+            </div>
+            <div>
+              <strong class="text-slate-900 font-semibold mb-0.5 block">Mobile Responsive Viewport Ok</strong>
+              <p class="text-xs text-slate-500">Perfect container sizing. Fully compatible across mobile displays and tablets.</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="p-4 bg-[#f6921e]/5 rounded-2xl border border-[#f6921e]/15 mb-6">
+          <p class="text-xs text-slate-700 leading-relaxed">
+            💡 <strong>We got you.</strong> Our standard programs can resolve these issues natively inside 30 days. Let's go over the complete technical breakdown together.
+          </p>
+        </div>
+
+        <div class="flex gap-2.5 justify-end">
+          <button type="button" onclick="closeAuditModal()" class="px-4 py-2.5 text-sm font-semibold text-slate-500 hover:text-slate-800 transition-colors">Close Results</button>
+          <button type="button" onclick="auditModalAskToFix()" class="py-2.5 px-5 text-sm font-bold text-white rounded-[8px] bg-[#f6921e] hover:opacity-95 shadow-sm transition-all shadow-orange-500/15">Ask to fix these</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   DATA
+   ============================================================ */
+
+const SOCIAL_PROOF_STATS = [
+  { id: "01", icon: "calendar", title: "14+ Years in Business", description: "Delivering elite search rankings since 2008. We navigate complex Google algorithms to help Orange County brands dominate visibility and drive high-intent organic leads." },
+  { id: "02", icon: "award", title: "Google Certified Partner", description: "Holding all six official Google search, display, and analytics certifications. Our verified expertise ensures high-performance campaign engineering that targets maximum ROI." },
+  { id: "03", icon: "star", title: "5-Star Rated on Google", description: "Maintaining an immaculate five-star rating on Google and Yelp. Orange County companies trust us for high-integrity SEO strategy, live dashboard metrics, and clear communication." },
+  { id: "04", icon: "users", title: "500+ Local Clients Served", description: "Empowering over 500 growth-minded enterprises, medical groups, and local firms across Southern California. We understand the unique dynamics of the Orange County landscape." },
+];
+
+const LOGO_CAROUSEL = [
+  { name: "Google Shopping Certification", url: "https://ovikbiswas.wordpress.com/wp-content/uploads/2026/05/seo-company-shopping-cert-02-175x80.png_202605311240.png" },
+  { name: "Google Search Certification", url: "https://ovikbiswas.wordpress.com/wp-content/uploads/2026/05/seo-company-serach-cert-02-175x80.png_202605311242.png" },
+  { name: "Google Analytics Certification", url: "https://ovikbiswas.wordpress.com/wp-content/uploads/2026/05/seo-company-analytics-cert-02-175x80.png_202605311242.png" },
+  { name: "Google AdWords Certification", url: "https://ovikbiswas.wordpress.com/wp-content/uploads/2026/05/seo-company-adwords-cert-02-175x80.png_202605311242.png" },
+  { name: "Google Display Certification", url: "https://ovikbiswas.wordpress.com/wp-content/uploads/2026/05/seo-company-display-cert-02-175x80.png_202605311243.png" },
+  { name: "Google YouTube Certification", url: "https://ovikbiswas.wordpress.com/wp-content/uploads/2026/05/seo-company-youtube-cert-02-175x80.png_202605311243.png" },
+];
+
+const NAV_SERVICES = [
+  { name: "Search Engine Optimization (SEO)", desc: "Dominate Google & Map Pack lists", icon: "globe" },
+  { name: "Local SEO Specialist", desc: "Gain hyper-local visibility in OC", icon: "compass" },
+  { name: "Web Speed & Technical Audits", desc: "Maximize conversion performance", icon: "bar-chart-3" },
+  { name: "Mobile responsive development", desc: "Build standard-setting reactive platforms", icon: "smartphone" },
+];
+
+const GROWTH_PILLARS = [
+  { id: "01", icon: "trending-up", title: "We grow small businesses", description: "Our campaigns speak the language of your ideal customer — driving real inquiries, not just traffic numbers." },
+  { id: "02", icon: "shield-check", title: "We strengthen your reputation", description: "A strong online presence turns browsers into buyers. We keep you visible, trusted, and ahead of the competition." },
+  { id: "03", icon: "award", title: "We bring 100+ years of expertise", description: "Our team's combined experience spans every major Google algorithm update — so nothing surprises us." },
+  { id: "04", icon: "heart-handshake", title: "We are invested in your success", description: "Your business is never just a line item on a spreadsheet. We treat every project with the same urgency you do." },
+];
+
+const STATISTICS = [
+  { percentage: "90%", label: "Consumers search for local businesses online before visiting", icon: "search", accent: false },
+  { percentage: "75%", label: "People never scroll past the first page of Google search results", icon: "eye", accent: false },
+  { percentage: "55%", label: "Visitors abandon a website in 15 seconds if it fails to engage them", icon: "clock", accent: true },
+];
+
+const SERVICES = [
+  { id: "01.", title: "SEO Services", description: "We launch modern and high performing organic search campaigns that establish absolute local authority for your orange county brand. Our custom methodology drives targeted search traffic, capturing qualified potential buyers at the precise moment they seek help.", bullets: ["In-depth Keyword & Search-intent Analysis", "Comprehensive On-Page & Technical Audits", "Strategic High-Authority Link Building", "Rank Tracking & Real-time KPI Reporting"], image: "https://cdn.dribbble.com/userupload/34482305/file/original-01a3e38f622034441e8a75d17bbdda6c.png" },
+  { id: "02.", title: "Website Design", description: "We design beautiful and fast responsive sites engineered to transform standard cold digital visitors into active paying fans. By coding clean layouts with search compliance built directly from code, we guarantee a flawless digital experience.", bullets: ["Modern Interface Layout & Design Architecture", "Extreme Speed & Technical SEO Tuning", "Mobile-first Responsive Design Systems", "High-conversion Landing Page Structures"], image: "https://cdn.dribbble.com/userupload/45451578/file/1f6073d9ca608410cf89780e586cf575.png" },
+  { id: "03.", title: "Google Maps Marketing", description: "Dominate your surrounding physical neighborhood and stand out directly inside the competitive Google local Maps pack. We optimize your local profiles and build strong citation networks, ensuring qualified regional buyers find your location above everyone else.", bullets: ["Google Business Profile Optimization of Elements", "Localized Citations & Address Verification", "Review Management & Authority-building Campaigns", "Geofocused Local Keyword Targeting Strategy"], image: "https://cdn.dribbble.com/userupload/3258628/file/original-ee51e66bfafc1799dce2d149746848d8.jpg" },
+  { id: "04.", title: "Content Writing", description: "We write authoritative and highly structured informative copy that builds unconditional digital authority before both human readers and search engines. Every custom page is strategically optimized to guide browser traffic into your high paying conversion goals.", bullets: ["SEO Blog Posts & Thought Leadership Articles", "Expert E-A-T Optimized Copywriting Systems", "Highly Conversive Copy & Direct Sales Lettering", "Meta Tag & Content Schema Structuring"], image: "https://cdn.dribbble.com/userupload/34905587/file/original-e8556ea49425d0e4bf6671c4e81552dd.png" },
+  { id: "05.", title: "Google Ads (PPC)", description: "We build and manage laser focused paid campaigns that capture your immediate local leads and conversions. While your organic rankings build slowly in the background, our optimized search engine strategies secure instant premium top page visibility.", bullets: ["Strategic Adwords Setup & Targeted Optimization", "Cost-Efficient Bidding & Match-type Filtering", "A/B Split Testing & Copy Variants Testing", "Clear Conversion Funnel Tracking Architecture"], image: "https://cdn.dribbble.com/userupload/42112422/file/original-24f847bf59eb83281f2af2781ad90295.png" },
+  { id: "06.", title: "Social Media", description: "We establish a regular and highly coordinated presence across key social channels to broaden your market reach. By publishing highly engaging updates and tracking target audience response, we direct loyal prospective customers to your main website.", bullets: ["Aesthetic Social Channel Identity & Cohesiveness", "High-value Curated Content & Engagement Posts", "Multi-Platform Strategic Distribution Methods", "Audience Alignment & Growth Funnels Building"], image: "https://cdn.dribbble.com/userupload/11218225/file/original-f1507da0adeb1d66558b23d1b420fc38.png" },
+];
+
+const PROCESS_STEPS = [
+  { stepNum: "Step 1", phase: "Research", title: "Audit & Discover", description: "We perform exhaustive keyword research, competitor analysis, full website audit, and deep marketing evaluation to uncover immediate ranking results.", tags: ["Keyword research", "Competitor audit", "Website audit"], align: "left", activeThreshold: 15, icon: "search" },
+  { stepNum: "Step 2", phase: "Build", title: "Optimize & Create", description: "We execute high-impact on-page SEO optimization, strategic content writing, meta tag updates, mobile-friendly design, and authority link building.", tags: ["On-page SEO", "Content", "Link building"], align: "right", activeThreshold: 55, icon: "sparkles" },
+  { stepNum: "Step 3", phase: "Advance", title: "Scale & Report", description: "We drive instant conversions through Google Ads campaigns, continuous A/B testing, comprehensive social media management, and detailed transparent performance reports.", tags: ["Google Ads", "Social media", "Reports"], align: "left", activeThreshold: 85, icon: "trending-up" },
+];
+
+const TEAM_ROLES = [
+  { title: "Conversion Experts", description: "Turning visitors into leads.", icon: "target" },
+  { title: "Web Developers", description: "Clean, fast, SEO-ready code.", icon: "code" },
+  { title: "Content Writers", description: "Copy that ranks and converts.", icon: "pen-tool" },
+  { title: "Graphic Designers", description: "Visuals that build trust instantly.", icon: "palette" },
+];
+
+const REVIEWS = [
+  { name: "Chris Topher", verified: true, image: "https://ovikbiswas.wordpress.com/wp-content/uploads/2026/05/ai-image-chinese-man.jpg", rating: 5, review: "After months of trying to manage our rankings myself, I finally admitted that I was not cut out for it. I was ready to give up completely when a close business colleague recommended SEO Company OC. They are a premier local agency that delivered incredible results for us." },
+  { name: "Kim Eason", verified: true, image: "https://ovikbiswas.wordpress.com/wp-content/uploads/2026/05/ai-image-usa-man.jpg", rating: 5, review: "Our company had a website, but it was extremely hard for clients to find us on Google. We decided to seek professionals to reinvent our search strategy and discover new ways to capture real search inquiries. Partnering with SEO Company OC was easily the best business decision we made." },
+  { name: "Sherita Calle", verified: false, image: "https://ovikbiswas.wordpress.com/wp-content/uploads/2026/05/ai-image-russian-man.jpg", rating: 5, review: "We contacted SEO Company OC initially to boost our local search visibility and repair some technical errors. Their thorough audit revealed massive underlying developer issues. They reconstructed our entire digital footprint from scratch, which completely transformed." },
+];
+
+const BLOG_POSTS = [
+  { title: "How to Set Up and Optimize Your Yelp Business Page: Step-by-Step Guide", description: "If you've ever searched for a service and instantly trusted the business with the best reviews, photos, and a complete profile, you already understand the power of Yelp. But here's the thing: just having a profile isn't enough. You need to build it right.", image: "https://www.seocompanyoc.com/wp-content/uploads/2026/05/1.png", author: "Marcus Vance", readTime: "6 min read", category: "Yelp Marketing", date: "May 24, 2026", tagStyles: "text-pink-600 bg-pink-50 border-pink-100" },
+  { title: "7 Website Changes That Instantly Increase Conversions", description: "Let's be honest—getting traffic to your website feels good. You check your analytics, see the numbers going up, and think, okay, this is working. But then nothing happens. No clicks, no sign-ups, or sales. That's the part most people don't talk about.", image: "https://www.seocompanyoc.com/wp-content/uploads/2026/05/Picture3.png", author: "Sarah Jenkins", readTime: "4 min read", category: "UI/UX & CRO", date: "May 18, 2026", tagStyles: "text-emerald-600 bg-emerald-50 border-emerald-100" },
+  { title: "Local SEO Services in 2026: How AI Assistants Choose Which Businesses to Recommend", description: "As Google and voice assistants evolve, the criteria for local prominence is shifting significantly. AI search clients look for specific structure and proof signals to make real recommendations. Learn absolute best strategies to optimize your brand.", image: "https://www.seocompanyoc.com/wp-content/uploads/2026/03/Local-SEO-Services-in-2026-How-AI-Assistants-Choose-Which-Businesses-to-Recommend.png", author: "Liam Patel", readTime: "5 min read", category: "Local SEO", date: "Mar 12, 2026", tagStyles: "text-violet-600 bg-violet-50 border-violet-100" },
+];
+
+const STAR_SVG = `<svg class="w-3.5 h-3.5 text-[#f6921e] fill-current" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.743 2.224a1.35 1.35 0 0 1 2.514 0l1.737 4.195a.45 .45 0 0 0 .382.277l4.523.38c1.3.11 1.822 1.716.828 2.559l-3.41 2.89a.45 .45 0 0 0-.146.452l1.012 4.437a1.35 1.35 0 0 1-2.031 1.476l-3.87-2.316a.45 .45 0 0 0-.464 0l-3.87 2.316a1.35 1.35 0 0 1-2.031-1.476l1.012-4.437a.45 .45 0 0 0-.146-.452l-3.41-2.89c-.994-.843-.472-2.45.828-2.559l4.523-.38a.45 .45 0 0 0 .382-.277l1.737-4.195Z" fill="#f6921e" /></svg>`;
+
+/* ============================================================
+   RENDER HELPERS
+   ============================================================ */
+
+function icon(name, cls) {
+  return `<i data-lucide="${name}" class="${cls}"></i>`;
+}
+
+function renderSocialProof() {
+  const el = document.getElementById('social-proof-grid');
+  el.innerHTML = SOCIAL_PROOF_STATS.map(stat => `
+    <div class="bg-white rounded-2xl border-2 border-slate-200/80 p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 hover:border-[#f6921e]/60 hover:shadow-[0_12px_30px_rgba(246,146,30,0.06)] group">
+      <div>
+        <div class="text-xs sm:text-sm font-satoshi font-semibold text-slate-400 mb-5 flex select-none">{ ${stat.id} }</div>
+        <div class="inline-flex p-3 bg-orange-50/70 border border-orange-100 text-[#f6921e] rounded-[16px] mb-6 group-hover:bg-[#f6921e]/10 transition-colors duration-300">
+          ${icon(stat.icon, 'w-6 h-6 stroke-[1.8]')}
+        </div>
+        <h4 class="text-lg sm:text-xl font-bold text-slate-900 leading-tight tracking-tight mb-3 font-satoshi group-hover:text-amber-950 transition-colors">${stat.title}</h4>
+        <p class="text-xs sm:text-sm text-slate-500 font-satoshi leading-relaxed font-medium">${stat.description}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderLogoCarousel() {
+  const el = document.getElementById('logo-carousel-grid');
+  el.innerHTML = LOGO_CAROUSEL.map(logo => `
+    <div class="w-full flex justify-center items-center transition-all duration-300 md:px-4">
+      <img src="${logo.url}" alt="${logo.name}" title="${logo.name}" referrerpolicy="no-referrer"
+        class="h-10 sm:h-12 w-auto object-contain filter grayscale opacity-55 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer" />
+    </div>
+  `).join('');
+}
+
+function renderNavServices() {
+  const el = document.getElementById('services-dropdown-list');
+  el.innerHTML = NAV_SERVICES.map(svc => `
+    <a href="#" onclick="event.preventDefault(); closeServicesDropdown(); openAuditModal();" class="flex items-start gap-2.5 p-2 rounded-xl hover:bg-orange-50/50 transition-all text-left group">
+      <div class="p-1.5 bg-slate-50 text-slate-500 group-hover:bg-orange-100 group-hover:text-orange-500 rounded-lg transition-colors mt-0.5">
+        ${icon(svc.icon, 'w-4 h-4')}
+      </div>
+      <div>
+        <div class="text-[13px] font-bold text-slate-900 group-hover:text-[#f6921e] transition-colors leading-tight">${svc.name}</div>
+        <div class="text-[11px] text-slate-400 group-hover:text-slate-500 leading-tight mt-0.5">${svc.desc}</div>
+      </div>
+    </a>
+  `).join('');
+}
+
+function renderGrowthAgenda() {
+  const el = document.getElementById('growth-agenda-grid');
+  el.innerHTML = GROWTH_PILLARS.map(p => `
+    <div class="bg-white rounded-2xl border-2 border-slate-200/80 p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 hover:border-[#f6921e]/60 hover:shadow-[0_12px_30px_rgba(246,146,30,0.06)] group">
+      <div>
+        <div class="text-xs sm:text-sm font-satoshi font-semibold text-slate-400 mb-5 flex select-none">{ Pillar ${p.id} }</div>
+        <div class="inline-flex p-3 bg-orange-50/70 border border-orange-100 text-[#f6921e] rounded-[16px] mb-6 group-hover:bg-[#f6921e]/10 transition-colors duration-300">
+          ${icon(p.icon, 'w-6 h-6 stroke-[1.8]')}
+        </div>
+        <h4 class="text-lg sm:text-xl font-bold text-slate-900 leading-tight tracking-tight mb-3 font-satoshi group-hover:text-amber-950 transition-colors">${p.title}</h4>
+        <p class="text-xs sm:text-sm text-slate-500 font-satoshi leading-relaxed font-medium">${p.description}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderStatsCascade() {
+  const el = document.getElementById('stats-cascade');
+  el.innerHTML = STATISTICS.map((stat, idx) => {
+    const widthClass = idx === 0 ? "lg:w-[84%] lg:ml-auto" : idx === 1 ? "lg:w-[92%] lg:ml-auto" : "lg:w-full";
+    const accentClasses = stat.accent
+      ? "bg-[#f6921e] text-white border-2 border-[#f6921e] hover:opacity-[0.97]"
+      : "bg-white text-slate-900 border-2 border-slate-200/80 hover:border-slate-350";
+    return `
+    <div class="w-full ${widthClass} rounded-xl p-5 sm:p-6 md:p-8 flex items-center justify-between gap-6 transition-all duration-300 ${accentClasses} group">
+      <div class="flex items-center gap-5 sm:gap-6 md:gap-8 flex-1">
+        <div class="text-4xl sm:text-5xl md:text-6xl font-satoshi font-semibold tracking-tight select-none min-w-[70px] sm:min-w-[100px]">${stat.percentage}</div>
+        <div class="h-12 w-0.5 ${stat.accent ? 'bg-white/30' : 'bg-slate-200'} shrink-0"></div>
+        <p class="text-xs sm:text-sm md:text-base font-satoshi font-semibold leading-snug max-w-md ${stat.accent ? 'text-white' : 'text-slate-700'}">${stat.label}</p>
+      </div>
+      <div class="p-2.5 sm:p-3 rounded-full flex items-center justify-center shrink-0 ${stat.accent ? 'bg-white/10 text-white' : 'bg-slate-100/80 text-slate-500 group-hover:bg-[#f6921e]/10 group-hover:text-[#f6921e]'} transition-colors duration-300">
+        ${icon(stat.icon, 'w-5 h-5 sm:w-6 sm:h-6 stroke-[1.8]')}
+      </div>
+    </div>
+  `; }).join('');
+}
+
+function renderServices() {
+  const el = document.getElementById('services-list');
+  el.innerHTML = SERVICES.map(service => `
+    <div class="bg-white rounded-2xl border-2 border-slate-200/80 p-6 sm:p-8 lg:p-10 relative overflow-hidden flex flex-col lg:flex-row items-stretch justify-between gap-8 md:gap-10 transition-all duration-300 hover:border-[#f6921e]/60 hover:shadow-[0_12px_24px_rgba(246,146,30,0.03)] group">
+      <div class="flex-1 flex flex-col justify-between relative z-10">
+        <div>
+          <h3 class="text-3xl sm:text-4xl md:text-[46px] font-semibold text-slate-900 font-satoshi mb-4 sm:mb-5 group-hover:text-slate-950 transition-colors leading-[1.12] tracking-tight">${service.title}</h3>
+          <p class="text-xs sm:text-sm text-slate-500 font-satoshi max-w-xl leading-relaxed font-semibold">${service.description}</p>
+          <div class="space-y-2 my-6 sm:my-8 text-xs sm:text-sm text-slate-600 font-satoshi font-semibold">
+            ${service.bullets.map(b => `<p class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>${b}</p>`).join('')}
+          </div>
+        </div>
+        <div>
+          <button onclick="openCallModal()" class="bg-[#f6921e] backdrop-blur-[2px] rounded-[8px] text-white font-satoshi font-bold text-xs py-2.5 px-5 flex items-center justify-center gap-2 select-none cursor-pointer transition-all hover:scale-[1.02] active:scale-[0.98] shadow-[inset_0px_3px_3px_0px_rgba(255,255,255,0.3)] hover:shadow-[inset_0px_3px_3px_0px_rgba(255,255,255,0.4),0_6px_20px_rgba(246,146,30,0.15)] max-w-fit">
+            <span>Start a Campaign</span>
+            ${icon('arrow-right', 'w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5')}
+          </button>
+        </div>
+      </div>
+      <div class="hidden lg:block text-[140px] xl:text-[180px] font-satoshi font-extrabold text-slate-100/70 select-none absolute left-[45%] bottom-[-40px] -translate-x-1/2 pointer-events-none z-0">${service.id}</div>
+      <div class="w-full lg:w-[42%] xl:w-[40%] shrink-0 min-h-[220px] aspect-video lg:aspect-auto relative rounded-xl overflow-hidden border border-slate-200/60 z-10">
+        <img src="${service.image}" alt="${service.title}" referrerpolicy="no-referrer" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/10 to-transparent pointer-events-none"></div>
+      </div>
+    </div>
+  `).join('');
+}
+
+let processScrollPercent = 0;
+
+function renderProcessSteps() {
+  const el = document.getElementById('process-steps');
+  el.innerHTML = PROCESS_STEPS.map((step, idx) => {
+    const isPastThreshold = processScrollPercent >= step.activeThreshold;
+    const containerDesktopMargin = idx > 0 ? "lg:-mt-12" : "";
+    const alignClass = step.align === "left" ? "lg:items-start" : "lg:items-end";
+    const badgeJustify = idx === 1 ? "lg:justify-start" : "lg:justify-end";
+    const borderClasses = isPastThreshold ? "border-[#f6921e]/60 shadow-[0_12px_30px_rgba(246,146,30,0.06)]" : "border-slate-200/80";
+    return `
+    <div class="relative w-full flex flex-col ${alignClass} ${containerDesktopMargin}">
+      <div class="w-full lg:w-[47.5%] transition-all duration-500 animate-slide-in">
+        <div class="mb-4 pl-8 lg:pl-0 lg:flex ${badgeJustify}">
+          <span class="text-xs tracking-wider font-semibold text-black font-satoshi bg-white px-3.5 py-2.5 rounded-full inline-block border border-slate-200 shadow-sm">${step.stepNum}: ${step.phase}</span>
+        </div>
+        <div class="p-6 sm:p-8 rounded-2xl bg-white border-2 transition-all duration-300 ml-8 lg:ml-0 ${borderClasses} hover:border-[#f6921e]/60 group">
+          <div class="inline-flex p-3 bg-orange-50/70 border border-orange-100 text-[#f6921e] rounded-[16px] mb-4.5 group-hover:bg-[#f6921e]/10 transition-colors duration-300">
+            ${icon(step.icon, 'w-6 h-6 stroke-[1.8]')}
+          </div>
+          <h3 class="text-2xl sm:text-3xl font-bold font-satoshi text-slate-900 mb-3 group-hover:text-slate-950 transition-colors">${step.title}</h3>
+          <p class="text-sm sm:text-base text-slate-500 font-satoshi font-semibold leading-relaxed mb-6">${step.description}</p>
+          <div class="flex flex-wrap gap-2 pt-2 border-t border-slate-100">
+            ${step.tags.map(tag => `<span class="text-[10px] sm:text-xs font-satoshi font-bold text-slate-500 bg-slate-100 hover:bg-slate-200/80 transition-colors rounded-full px-3 py-1 select-none">${tag}</span>`).join('')}
+          </div>
+        </div>
+      </div>
+    </div>
+  `; }).join('');
+}
+
+function renderTeamExpertise() {
+  const el = document.getElementById('team-expertise-grid');
+  el.innerHTML = TEAM_ROLES.map(role => `
+    <div class="p-6 rounded-xl bg-white border-2 border-slate-200/85 hover:border-[#f6921e]/45 transition-all duration-300 md:hover:scale-[1.01] flex flex-col items-start gap-4 group cursor-pointer" onclick="openCallModal()">
+      <div class="w-10 h-10 rounded-full border border-[#f6921e]/20 bg-[#f6921e]/10 flex items-center justify-center text-[#f6921e] transition-all duration-300 group-hover:bg-[#f6921e]/20">
+        ${icon(role.icon, 'w-5 h-5 stroke-[2]')}
+      </div>
+      <div class="flex flex-col gap-1.5">
+        <h3 class="text-xl sm:text-2xl font-bold font-satoshi text-slate-900 group-hover:text-slate-950 transition-colors">${role.title}</h3>
+        <p class="text-xs sm:text-sm text-slate-500 font-satoshi font-semibold leading-relaxed">${role.description}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderTestimonials() {
+  document.getElementById('testimonials-header-stars').innerHTML =
+    Array(5).fill(STAR_SVG).join('') + `<span class="text-xs font-bold text-slate-700 font-satoshi ml-1">5.0 / 5.0</span>`;
+
+  const el = document.getElementById('testimonials-grid');
+  el.innerHTML = REVIEWS.map(item => `
+    <div class="p-6 sm:p-8 rounded-xl bg-[#faf9f6]/40 border-2 border-slate-200 hover:border-[#f6921e]/35 transition-all duration-300 flex flex-col h-full hover:shadow-lg hover:shadow-slate-100/50 group text-left">
+      <div class="flex items-center gap-4 mb-5">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden border-2 border-slate-200 flex-shrink-0 bg-white">
+          <img src="${item.image}" alt="${item.name}" referrerpolicy="no-referrer" class="w-full h-full object-cover select-none pointer-events-none transition-transform duration-500 group-hover:scale-105" />
+        </div>
+        <div class="flex flex-col items-start gap-1">
+          <div class="flex items-center gap-1.5">
+            <span class="text-lg sm:text-xl font-bold font-satoshi text-slate-900 group-hover:text-slate-950 transition-colors">${item.name}</span>
+            ${item.verified ? `<span class="inline-flex items-center justify-center w-4 h-4 bg-blue-500 text-white rounded-full p-0.5" title="Verified Customer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><polyline points="20 6 9 17 4 12" /></svg></span>` : ''}
+          </div>
+          <div class="flex items-center gap-0.5">${Array(item.rating).fill(STAR_SVG).join('')}</div>
+        </div>
+      </div>
+      <div class="w-full border-t border-slate-200 mb-5"></div>
+      <blockquote class="flex-1 text-slate-700 font-satoshi font-semibold text-base sm:text-lg leading-relaxed tracking-tight">${item.review}</blockquote>
+    </div>
+  `).join('');
+}
+
+function renderBlog() {
+  const el = document.getElementById('blog-grid');
+  el.innerHTML = BLOG_POSTS.map(post => `
+    <div onclick="openAuditModal()" class="p-0 bg-transparent flex flex-col h-full group cursor-pointer text-left transition-all duration-300">
+      <div class="aspect-[16/10] sm:aspect-[16/10] overflow-hidden rounded-2xl mb-4 bg-slate-50 border border-slate-100">
+        <img src="${post.image}" alt="${post.title}" referrerpolicy="no-referrer" class="w-full h-full object-cover select-none pointer-events-none transition-transform duration-500 group-hover:scale-105" />
+      </div>
+      <div class="flex items-center gap-2 mb-2.5 text-[11px] font-satoshi font-semibold text-slate-400">
+        <span>${post.author}</span><span class="text-slate-300">•</span><span>${post.readTime}</span>
+      </div>
+      <div class="mb-3">
+        <h3 class="text-lg font-bold font-satoshi text-slate-900 leading-snug group-hover:text-[#f6921e] transition-colors line-clamp-2">${post.title}</h3>
+      </div>
+      <p class="text-xs sm:text-sm text-slate-500 font-satoshi font-semibold leading-relaxed mb-6 gap-2 line-clamp-3">${post.description}</p>
+      <div class="flex items-center justify-between pt-4 border-t border-slate-200 mt-auto">
+        <span class="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md border ${post.tagStyles}">${post.category}</span>
+        <span class="text-xs font-satoshi font-bold text-slate-400">${post.date}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderContactPreferences() {
+  const el = document.getElementById('contact-preference-group');
+  const methods = ["Email", "Phone", "Text"];
+  el.innerHTML = methods.map((method, idx) => `
+    <label class="flex items-center gap-2 cursor-pointer group" data-method="${method}">
+      <input type="radio" name="contactPreference" value="${method}" ${idx === 0 ? 'checked' : ''} class="sr-only" onchange="updateContactPreference('${method}')" />
+      <div class="pref-dot w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${idx === 0 ? 'border-[#f6921e] bg-[#f6921e]/10' : 'border-slate-300 bg-white'}">
+        ${idx === 0 ? '<div class="w-2.5 h-2.5 rounded-full bg-[#f6921e]"></div>' : ''}
+      </div>
+      <span class="text-sm font-bold font-satoshi text-slate-700 group-hover:text-slate-900 transition-colors">${method}</span>
+    </label>
+  `).join('');
+}
+
+function updateContactPreference(selected) {
+  document.querySelectorAll('#contact-preference-group label').forEach(label => {
+    const dot = label.querySelector('.pref-dot');
+    if (label.dataset.method === selected) {
+      dot.classList.remove('border-slate-300', 'bg-white');
+      dot.classList.add('border-[#f6921e]', 'bg-[#f6921e]/10');
+      dot.innerHTML = '<div class="w-2.5 h-2.5 rounded-full bg-[#f6921e]"></div>';
+    } else {
+      dot.classList.remove('border-[#f6921e]', 'bg-[#f6921e]/10');
+      dot.classList.add('border-slate-300', 'bg-white');
+      dot.innerHTML = '';
+    }
+  });
+}
+
+/* ============================================================
+   NAVBAR SERVICES DROPDOWN
+   ============================================================ */
+let servicesDropdownOpen = false;
+
+function toggleServicesDropdown() {
+  servicesDropdownOpen = !servicesDropdownOpen;
+  applyServicesDropdownState();
+}
+function closeServicesDropdown() {
+  servicesDropdownOpen = false;
+  applyServicesDropdownState();
+}
+function applyServicesDropdownState() {
+  const dropdown = document.getElementById('services-dropdown');
+  const chevron = document.getElementById('services-chevron');
+  const button = document.getElementById('nav-services');
+  if (servicesDropdownOpen) {
+    dropdown.classList.remove('hidden');
+    chevron.classList.add('rotate-180');
+    button.classList.add('text-[#f6921e]');
+    button.classList.remove('text-slate-800');
+  } else {
+    dropdown.classList.add('hidden');
+    chevron.classList.remove('rotate-180');
+    button.classList.remove('text-[#f6921e]');
+    button.classList.add('text-slate-800');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const wrapper = document.getElementById('services-dropdown-wrapper');
+  const button = document.getElementById('nav-services');
+
+  // Desktop hover behavior (mirrors onMouseEnter/onMouseLeave in the original)
+  wrapper.addEventListener('mouseenter', () => { servicesDropdownOpen = true; applyServicesDropdownState(); });
+  wrapper.addEventListener('mouseleave', () => { servicesDropdownOpen = false; applyServicesDropdownState(); });
+  button.addEventListener('click', toggleServicesDropdown);
+});
+
+/* ============================================================
+   CALL MODAL
+   ============================================================ */
+const CALL_DATES = [
+  { label: "Wed, Jun 3", value: "2026-06-03" },
+  { label: "Thu, Jun 4", value: "2026-06-04" },
+  { label: "Fri, Jun 5", value: "2026-06-05" },
+  { label: "Mon, Jun 8", value: "2026-06-08" },
+  { label: "Tue, Jun 9", value: "2026-06-09" },
+];
+const CALL_TIME_SLOTS = ["09:30 AM (PST)", "11:00 AM (PST)", "01:30 PM (PST)", "03:00 PM (PST)", "04:30 PM (PST)"];
+
+let callSelectedDate = "2026-06-03";
+let callSelectedTime = "";
+
+function renderCallDateOptions() {
+  const el = document.getElementById('call-date-options');
+  el.innerHTML = CALL_DATES.map(d => {
+    const parts = d.label.split(", ");
+    const selected = callSelectedDate === d.value;
+    return `
+    <button type="button" onclick="selectCallDate('${d.value}')"
+      class="py-2 px-1 text-xs font-semibold rounded-[8px] border text-center transition-all ${selected ? 'bg-orange-50 border-[#f6921e] text-[#f6921e] shadow-sm' : 'border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50'}">
+      ${parts[1]}
+      <span class="block text-[10px] font-normal text-slate-400">${parts[0]}</span>
+    </button>`;
+  }).join('');
+}
+
+function renderCallTimeOptions() {
+  const el = document.getElementById('call-time-options');
+  el.innerHTML = CALL_TIME_SLOTS.map(time => {
+    const selected = callSelectedTime === time;
+    return `
+    <button type="button" onclick="selectCallTime('${time}')"
+      class="py-2.5 px-3 text-xs font-medium rounded-[8px] border text-left flex items-center justify-between transition-all ${selected ? 'bg-orange-50 border-[#f6921e] text-[#f6921e] font-semibold' : 'border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50'}">
+      <span>${time}</span>
+      ${selected ? icon('check', 'w-3.5 h-3.5 text-[#f6921e]') : ''}
+    </button>`;
+  }).join('');
+  lucide.createIcons();
+}
+
+function selectCallDate(value) {
+  callSelectedDate = value;
+  renderCallDateOptions();
+  updateCallContinueBtn();
+}
+function selectCallTime(time) {
+  callSelectedTime = time;
+  renderCallTimeOptions();
+  updateCallContinueBtn();
+}
+function updateCallContinueBtn() {
+  const btn = document.getElementById('call-continue-btn');
+  if (callSelectedDate && callSelectedTime) {
+    btn.disabled = false;
+    btn.className = "py-2 px-5 text-sm font-semibold rounded-[8px] flex items-center gap-1.5 transition-all bg-[#f6921e] text-white hover:opacity-95 shadow-sm shadow-orange-500/10 cursor-pointer";
+  } else {
+    btn.disabled = true;
+    btn.className = "py-2 px-5 text-sm font-semibold rounded-[8px] flex items-center gap-1.5 transition-all bg-slate-100 text-slate-400 cursor-not-allowed";
+  }
+}
+
+function callModalNextStep() {
+  if (callSelectedDate && callSelectedTime) {
+    callModalGoToStep(2);
+    document.getElementById('call-selected-datetime').textContent = `${callSelectedDate} at ${callSelectedTime}`;
+  }
+}
+
+function callModalGoToStep(step) {
+  [1, 2, 3].forEach(s => {
+    document.getElementById(`call-step-${s}`).classList.toggle('hidden', s !== step);
+  });
+}
+
+function callModalSubmit(e) {
+  e.preventDefault();
+  const name = document.getElementById('call-name').value;
+  const email = document.getElementById('call-email').value;
+  if (!name || !email) return;
+
+  document.getElementById('call-success-name').textContent = name;
+  document.getElementById('call-success-email').textContent = email;
+  document.getElementById('call-success-date').textContent = callSelectedDate;
+  document.getElementById('call-success-time').textContent = callSelectedTime;
+  callModalGoToStep(3);
+}
+
+function resetCallModal() {
+  callModalGoToStep(1);
+  callSelectedDate = "2026-06-03";
+  callSelectedTime = "";
+  document.getElementById('call-name').value = "";
+  document.getElementById('call-email').value = "";
+  document.getElementById('call-website').value = "";
+  document.getElementById('call-budget').selectedIndex = 0;
+  renderCallDateOptions();
+  renderCallTimeOptions();
+  updateCallContinueBtn();
+}
+
+function openCallModal() {
+  closeAuditModal(true);
+  document.getElementById('call-modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCallModal(skipReset) {
+  document.getElementById('call-modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+  if (!skipReset) setTimeout(resetCallModal, 250);
+}
+
+/* ============================================================
+   AUDIT MODAL
+   ============================================================ */
+let auditInterval = null;
+
+function auditModalStart(e) {
+  e.preventDefault();
+  const website = document.getElementById('audit-website').value;
+  const email = document.getElementById('audit-email').value;
+  if (!website || !email) return;
+
+  document.getElementById('audit-progress-site').textContent = website;
+  document.getElementById('audit-result-site').textContent = website;
+  auditModalGoToStep(2);
+  runAuditProgress();
+}
+
+function auditModalGoToStep(step) {
+  [1, 2, 3].forEach(s => {
+    document.getElementById(`audit-step-${s}`).classList.toggle('hidden', s !== step);
+  });
+}
+
+function runAuditProgress() {
+  const phrases = [
+    { progress: 15, text: "Connecting to SEOcompanyOC database..." },
+    { progress: 35, text: "Analyzing meta tags, head titles, and structure..." },
+    { progress: 55, text: "Running Core Web Vitals audit & speed test..." },
+    { progress: 75, text: "Evaluating backlink network authority..." },
+    { progress: 92, text: "Pinpointing Orange County local map pack ranking opportunities..." },
+    { progress: 100, text: "Compiling final search authority score..." },
+  ];
+
+  let elapsed = 0;
+  if (auditInterval) clearInterval(auditInterval);
+  auditInterval = setInterval(() => {
+    elapsed += 1;
+    const currentPercentage = Math.min(Math.floor((elapsed / 45) * 100), 100);
+
+    document.getElementById('audit-progress-pct').textContent = currentPercentage + '%';
+    const circumference = 326.7;
+    document.getElementById('audit-progress-circle').setAttribute('stroke-dashoffset', circumference - (circumference * currentPercentage) / 100);
+
+    const headingPhrase = phrases.find(p => currentPercentage <= p.progress) || phrases[phrases.length - 1];
+    document.getElementById('audit-progress-text').textContent = headingPhrase.text;
+
+    if (currentPercentage >= 100) {
+      clearInterval(auditInterval);
+      auditModalGoToStep(3);
+    }
+  }, 80);
+}
+
+function auditModalAskToFix() {
+  closeAuditModal(true);
+  openCallModal();
+}
+
+function resetAuditModal() {
+  if (auditInterval) clearInterval(auditInterval);
+  auditModalGoToStep(1);
+  document.getElementById('audit-website').value = "";
+  document.getElementById('audit-email').value = "";
+  document.getElementById('audit-progress-pct').textContent = "0%";
+  document.getElementById('audit-progress-text').textContent = "Initializing crawler...";
+  document.getElementById('audit-progress-circle').setAttribute('stroke-dashoffset', '326.7');
+}
+
+function openAuditModal() {
+  closeCallModal(true);
+  document.getElementById('audit-modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeAuditModal(skipReset) {
+  document.getElementById('audit-modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+  if (!skipReset) setTimeout(resetAuditModal, 250);
+}
+
+/* ============================================================
+   CONTACT FORM
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('contact-form');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('contact-submit-btn');
+    const label = document.getElementById('contact-submit-label');
+    btn.disabled = true;
+    label.textContent = "Sending Plan...";
+
+    setTimeout(() => {
+      document.getElementById('contact-success').classList.remove('hidden');
+      form.reset();
+      updateContactPreference('Email');
+      btn.disabled = false;
+      label.textContent = "Send Message";
+
+      setTimeout(() => {
+        document.getElementById('contact-success').classList.add('hidden');
+      }, 5000);
+    }, 1500);
+  });
+});
+
+/* ============================================================
+   PROCESS SCROLL PROGRESS
+   ============================================================ */
+function handleProcessScroll() {
+  const section = document.getElementById('process-section');
+  if (!section) return;
+  const rect = section.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
+
+  const startOffset = windowHeight / 2;
+  const endOffset = windowHeight / 2;
+
+  const sectionElementHeight = rect.height;
+  const currentPosition = startOffset - rect.top;
+
+  let percent = (currentPosition / (sectionElementHeight - endOffset + startOffset)) * 100;
+  percent = Math.max(0, Math.min(100, percent));
+
+  processScrollPercent = percent;
+  document.getElementById('process-progress-desktop').style.height = percent + '%';
+  document.getElementById('process-progress-mobile').style.height = percent + '%';
+  renderProcessSteps();
+  lucide.createIcons();
+}
+
+window.addEventListener('scroll', handleProcessScroll);
+window.addEventListener('resize', handleProcessScroll);
+
+/* ============================================================
+   INIT
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  renderSocialProof();
+  renderLogoCarousel();
+  renderNavServices();
+  renderGrowthAgenda();
+  renderStatsCascade();
+  renderServices();
+  renderProcessSteps();
+  renderTeamExpertise();
+  renderTestimonials();
+  renderBlog();
+  renderContactPreferences();
+
+  renderCallDateOptions();
+  renderCallTimeOptions();
+
+  lucide.createIcons();
+  handleProcessScroll();
+
+  // Escape key closes modals
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeCallModal();
+      closeAuditModal();
+    }
+  });
+});
+</script>
+
+</body>
+</html>
