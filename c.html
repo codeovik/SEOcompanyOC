@@ -1,0 +1,1463 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <script type="module" src="/@vite/client"></script>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Commercial Construction Company | Accredited Building Contractor</title>
+<meta name="description" content="Accredited construction company delivering trusted commercial and residential building services with proven 5-star reviews." />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/recoleta" rel="stylesheet">
+
+<!-- Tailwind (Play CDN) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Satoshi', 'Inter', 'sans-serif'],
+          satoshi: ['Satoshi', 'sans-serif'],
+          recoleta: ['Recoleta', 'serif'],
+          playfair: ['Recoleta', 'serif'],
+        },
+        colors: {
+          accent: '#f6921e',
+        }
+      }
+    }
+  }
+</script>
+
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+<style>
+  body {
+    font-family: 'Satoshi', sans-serif;
+    background-color: #fcfcfc;
+    color: #1a1a1a;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-slide-in { animation: slideIn 0.6s ease-out; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .animate-fade-in { animation: fadeIn 0.6s ease-out; }
+
+  /* line-clamp utilities */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Modal open/close transitions */
+  .modal-overlay {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .modal-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .modal-card {
+    opacity: 0;
+    transform: scale(0.95) translateY(15px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  .modal-overlay.open .modal-card {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>
+<script src="/_aistudio-iframe.js?v=1ee22f18"></script></head>
+<body class="min-h-screen bg-[#fcfbfa] flex flex-col justify-between font-sans selection:bg-amber-100 selection:text-amber-900 overflow-x-hidden p-0 m-0">
+<div class="w-full">
+
+<!-- ============ 1. NAVBAR ============ -->
+<nav class="w-full bg-white border-b border-slate-200 z-45 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20 border-l border-r border-slate-200">
+
+    <!-- Brand Logo -->
+    <div class="flex items-center">
+      <a href="#" class="flex items-center gap-3 group transition-opacity" id="nav-logo">
+        <div class="w-10 h-10 rounded-xl bg-[#f6921e] flex items-center justify-center text-white font-bold text-xl shadow-md shadow-orange-500/20 group-hover:scale-105 transition-transform">
+          <i data-lucide="building-2" class="w-5 h-5 stroke-[2.5]"></i>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-satoshi font-black text-slate-900 text-lg sm:text-xl tracking-tight leading-none group-hover:text-[#f6921e] transition-colors">
+            APEX <span class="text-[#f6921e]">CONSTRUCTION</span>
+          </span>
+          <span class="text-[10px] font-bold text-slate-400 tracking-widest uppercase font-satoshi mt-0.5">
+            Accredited Building Contractors
+          </span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Desktop Navigation Links -->
+    <div class="hidden lg:flex items-center space-x-6 text-slate-800 font-satoshi font-semibold text-[15px]">
+      <a href="#" class="px-1 py-1.5 hover:text-[#f6921e] transition-colors" id="nav-home">Home</a>
+      <a href="#about" class="px-1 py-1.5 hover:text-[#f6921e] transition-colors" id="nav-about">About Us</a>
+
+      <!-- Dropdown for Services -->
+      <div class="relative" id="services-dropdown-wrapper">
+        <button
+          type="button"
+          id="nav-services"
+          class="px-1 py-1.5 rounded-lg flex items-center gap-1 hover:text-[#f6921e] transition-colors cursor-pointer text-slate-800"
+        >
+          Services
+          <i data-lucide="chevron-down" class="w-3.5 h-3.5 transition-transform duration-200" id="services-chevron"></i>
+        </button>
+
+        <div
+          id="services-dropdown"
+          class="hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 w-80 bg-white rounded-2xl shadow-xl border border-slate-100 p-2 z-50"
+        >
+          <div class="text-[11px] font-bold tracking-widest text-slate-400 uppercase p-2 border-b border-slate-50 mb-1">
+            Commercial & Building Solutions
+          </div>
+          <div class="space-y-1" id="services-dropdown-list"></div>
+          <div class="mt-1.5 pt-1.5 border-t border-slate-50 flex items-center justify-between p-2 bg-slate-50/50 rounded-b-xl">
+            <span class="text-[10px] text-slate-400 font-medium">Planning a commercial build?</span>
+            <button
+              onclick="closeServicesDropdown(); openQuoteModal();"
+              class="text-[10px] text-[#f6921e] font-bold hover:underline flex items-center gap-0.5"
+            >
+              Request Tender Quote
+              <i data-lucide="arrow-up-right" class="w-2.5 h-2.5"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <a href="#case-studies" class="px-1 py-1.5 hover:text-[#f6921e] transition-colors" id="nav-case-studies">Case Studies</a>
+    </div>
+
+    <!-- Right Action CTAs -->
+    <div class="hidden sm:flex items-center gap-3">
+      <button
+        onclick="openQuoteModal()"
+        class="bg-[#f6921e] backdrop-blur-[2px] rounded-[8px] text-white font-satoshi font-bold text-xs sm:text-sm py-2.5 px-4 sm:px-5 flex items-center gap-2 select-none cursor-pointer transition-all hover:scale-[1.02] active:scale-[0.98] shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.35)] hover:shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.45),0_6px_20px_rgba(246,146,30,0.15)] group"
+        id="btn-navbar-quote"
+      >
+        <span>Request Quote</span>
+        <div class="w-[18px] h-[18px] sm:w-[22px] sm:h-[22px] bg-white rounded-full flex items-center justify-center text-[#f6921e] transition-transform duration-200 group-hover:rotate-45">
+          <i data-lucide="arrow-up-right" class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 stroke-[2.5]"></i>
+        </div>
+      </button>
+
+      <a
+        href="#case-studies"
+        class="bg-white hover:bg-slate-50 rounded-[8px] text-slate-800 font-satoshi font-bold text-xs sm:text-sm py-2.5 px-4 flex items-center gap-1.5 select-none cursor-pointer border border-slate-200 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-sm"
+        id="btn-navbar-projects"
+      >
+        <span>View Projects</span>
+      </a>
+    </div>
+
+    <!-- Mobile Menu Toggle Button -->
+    <div class="flex lg:hidden items-center gap-2">
+      <button
+        onclick="toggleMobileMenu()"
+        class="p-2 rounded-xl text-slate-700 hover:bg-slate-100 transition-colors"
+        id="btn-mobile-menu"
+      >
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-drawer" class="hidden lg:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-6 space-y-3">
+    <a href="#" onclick="toggleMobileMenu()" class="block py-2 text-base font-bold text-slate-800 hover:text-[#f6921e]">Home</a>
+    <a href="#about" onclick="toggleMobileMenu()" class="block py-2 text-base font-bold text-slate-800 hover:text-[#f6921e]">About Us</a>
+    <a href="#services" onclick="toggleMobileMenu()" class="block py-2 text-base font-bold text-slate-800 hover:text-[#f6921e]">Services</a>
+    <a href="#case-studies" onclick="toggleMobileMenu()" class="block py-2 text-base font-bold text-slate-800 hover:text-[#f6921e]">Case Studies</a>
+    <div class="pt-2 flex flex-col gap-2">
+      <button onclick="toggleMobileMenu(); openQuoteModal();" class="w-full bg-[#f6921e] text-white font-bold py-3 rounded-lg text-center">Request Quote</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ 2. HERO SECTION ============ -->
+<div class="w-full bg-white border-b border-slate-200 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto w-full border-l border-r border-slate-200">
+    <div
+      class="relative w-full min-h-[500px] md:min-h-[600px] lg:min-h-[670px] bg-cover bg-[#edf4f8] bg-[right_center] md:bg-[85%_center] flex flex-col justify-center py-12 md:py-20"
+      style="background-image:url('https://ovikbiswas.wordpress.com/wp-content/uploads/2026/07/building_crane_construction_manae280a6_2k_202607231745.jpeg'); background-repeat:no-repeat;"
+    >
+      <div class="absolute inset-y-0 left-0 w-full sm:w-[68%] md:w-[60%] lg:w-[56%] bg-gradient-to-r from-white via-white/95 to-transparent pointer-events-none z-[1]"></div>
+
+      <div class="relative z-10 w-full px-6 sm:px-12 md:pl-16 lg:pl-[72px] lg:pr-8 lg:max-w-[54%] text-left flex flex-col justify-center">
+
+        <!-- Badge / Eyebrow -->
+        <div class="inline-flex items-center gap-2 bg-white/90 backdrop-blur-md rounded-full border border-slate-200 py-1.5 px-4 text-xs font-semibold text-slate-800 shadow-sm max-w-fit mb-5 animate-fade-in">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#f6921e] opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-[#f6921e]"></span>
+          </span>
+          SafeContractor Approved • Which? Trusted Trader • FMB Member
+        </div>
+
+        <!-- Headline -->
+        <h1 class="font-satoshi font-bold text-slate-900 text-3xl sm:text-4xl md:text-5xl lg:text-[52px] lg:leading-[1.12] tracking-tight">
+          Trusted Construction Partner for
+          <span class="font-recoleta font-bold text-slate-900 opacity-80 block sm:inline">Residential &amp; Commercial</span> Projects
+        </h1>
+
+        <!-- Subheadline -->
+        <p class="text-slate-600 font-satoshi font-medium text-xs sm:text-sm md:text-base leading-relaxed mt-4 max-w-md">
+          Delivering high-quality construction with accredited workmanship, proven reliability and consistent 5-star customer satisfaction across commercial and institutional developments.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mt-7 max-w-xs sm:max-w-none">
+          <button
+            onclick="openQuoteModal()"
+            class="bg-[#f6921e] backdrop-blur-[2px] rounded-[8px] text-white font-satoshi font-bold text-xs sm:text-sm py-3 px-5 sm:px-6 flex items-center justify-center gap-2 select-none cursor-pointer transition-all hover:scale-[1.02] active:scale-[0.98] shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.35)] hover:shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.45),0_8px_25px_rgba(246,146,30,0.2)] group"
+            id="btn-hero-primary"
+          >
+            <span>Request Quote</span>
+            <div class="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] bg-white rounded-full flex items-center justify-center text-[#f6921e] transition-transform duration-200 group-hover:rotate-45 font-bold font-satoshi">
+              <i data-lucide="arrow-up-right" class="w-2.5 h-2.5 stroke-[3]"></i>
+            </div>
+          </button>
+
+          <a
+            href="#case-studies"
+            class="bg-white hover:bg-slate-50 rounded-[8px] text-slate-800 font-satoshi font-bold text-xs sm:text-sm py-3 px-5 sm:px-6 flex items-center justify-center gap-2 select-none cursor-pointer border border-slate-200 transition-all hover:scale-[1.02] active:scale-[0.98] group shadow-sm"
+            id="btn-hero-secondary"
+          >
+            <span>View Projects</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 text-slate-500 transition-transform duration-200 group-hover:translate-x-1"></i>
+          </a>
+        </div>
+
+        <!-- Trust Indicators Summary -->
+        <div class="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-[11px] sm:text-xs text-slate-500 font-satoshi font-medium select-none pt-4 border-t border-slate-200/80">
+          <div class="flex items-center gap-1">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-[#f6921e]"></i>
+            <span class="font-bold text-slate-700">Accredited Workmanship</span>
+          </div>
+          <span class="text-slate-300">•</span>
+          <div class="flex items-center gap-1">
+            <i data-lucide="shield-check" class="w-4 h-4 text-[#f6921e]"></i>
+            <span class="font-bold text-slate-700">£10M Public Liability</span>
+          </div>
+          <span class="text-slate-300">•</span>
+          <div class="flex items-center gap-1">
+            <i data-lucide="star" class="w-4 h-4 text-[#f6921e] fill-[#f6921e]"></i>
+            <span class="font-bold text-slate-700">5-Star Verified Reviews</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 3. TRUST BAR ============ -->
+<div class="w-full bg-white border-b border-slate-200 flex flex-col justify-center">
+  <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 border-l border-r border-slate-200">
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 items-center justify-items-center">
+
+      <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50/80 border border-slate-100 w-full justify-center">
+        <div class="w-10 h-10 rounded-lg bg-orange-50 border border-orange-100 flex items-center justify-center text-[#f6921e] shrink-0">
+          <i data-lucide="shield-check" class="w-5 h-5"></i>
+        </div>
+        <div class="text-left">
+          <span class="block text-xs font-black text-slate-900 font-satoshi uppercase tracking-wider">SafeContractor</span>
+          <span class="text-[11px] text-slate-500 font-semibold font-satoshi">Accredited Member</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50/80 border border-slate-100 w-full justify-center">
+        <div class="w-10 h-10 rounded-lg bg-orange-50 border border-orange-100 flex items-center justify-center text-[#f6921e] shrink-0">
+          <i data-lucide="award" class="w-5 h-5"></i>
+        </div>
+        <div class="text-left">
+          <span class="block text-xs font-black text-slate-900 font-satoshi uppercase tracking-wider">Which? Trusted</span>
+          <span class="text-[11px] text-slate-500 font-semibold font-satoshi">Vetted Trader 2026</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50/80 border border-slate-100 w-full justify-center">
+        <div class="w-10 h-10 rounded-lg bg-orange-50 border border-orange-100 flex items-center justify-center text-[#f6921e] shrink-0">
+          <i data-lucide="building" class="w-5 h-5"></i>
+        </div>
+        <div class="text-left">
+          <span class="block text-xs font-black text-slate-900 font-satoshi uppercase tracking-wider">FMB Member</span>
+          <span class="text-[11px] text-slate-500 font-semibold font-satoshi">Master Builders Fed</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50/80 border border-slate-100 w-full justify-center">
+        <div class="w-10 h-10 rounded-lg bg-orange-50 border border-orange-100 flex items-center justify-center text-[#f6921e] shrink-0">
+          <i data-lucide="star" class="w-5 h-5 fill-[#f6921e]"></i>
+        </div>
+        <div class="text-left">
+          <span class="block text-xs font-black text-slate-900 font-satoshi uppercase tracking-wider">5-Star Reviews</span>
+          <span class="text-[11px] text-slate-500 font-semibold font-satoshi">100% Satisfaction</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============ 4. SERVICES OVERVIEW ============ -->
+<div id="services" class="w-full bg-[#fbfbfb] border-b border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 border-l border-r border-slate-200">
+
+    <div class="text-center mb-16">
+      <span class="text-xs tracking-wider font-semibold text-black font-satoshi bg-white px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 mb-3 border border-[#f6921e]/20 shadow-[0_10px_25px_-5px_rgba(148,163,184,0.15)] select-none">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#f6921e] shrink-0"></span>
+        <span>Services Overview</span>
+      </span>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold font-satoshi text-slate-900 tracking-tight leading-tight">
+        Comprehensive Construction &amp; <br class="hidden sm:inline" />
+        <span class="font-recoleta font-bold text-slate-900 opacity-75 inline">Contracting Solutions</span>
+      </h2>
+      <p class="text-sm sm:text-base text-slate-500 font-satoshi font-medium mt-3 max-w-2xl mx-auto">
+        From initial site assessment to final building control sign-off — we deliver accredited construction projects tailored for commercial and institutional property managers.
+      </p>
+    </div>
+
+    <!-- 6 Service Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="services-grid"></div>
+
+    <div class="text-center mt-12 sm:mt-16">
+      <button
+        onclick="openQuoteModal()"
+        class="bg-white hover:bg-slate-50 rounded-[8px] text-slate-800 font-satoshi font-bold text-sm py-3.5 px-7 inline-flex items-center gap-2 select-none cursor-pointer border border-slate-200 transition-all hover:scale-[1.02] active:scale-[0.98] group shadow-sm"
+      >
+        <span>Discuss Your Construction Scope</span>
+        <i data-lucide="arrow-right" class="w-4 h-4 text-slate-500 transition-transform duration-200 group-hover:translate-x-1"></i>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ 5. WHY CHOOSE US ============ -->
+<div id="about" class="w-full bg-white border-b border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 border-l border-r border-slate-200">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+      <div class="lg:col-span-7 flex flex-col justify-center text-left">
+        <div class="mb-5">
+          <span class="text-xs tracking-wider font-semibold text-black font-satoshi bg-white px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 border border-[#f6921e]/20 shadow-[0_10px_25px_-5px_rgba(148,163,184,0.15)] select-none">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#f6921e] shrink-0"></span>
+            <span>Why Choose Apex</span>
+          </span>
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold font-satoshi text-slate-900 tracking-tight leading-tight mb-6">
+          Built on Integrity, Engineered for <br class="hidden sm:inline" />
+          <span class="font-recoleta font-bold text-slate-900 opacity-[0.75] not-italic inline">Commercial Excellence</span>
+        </h2>
+
+        <p class="text-slate-600 font-satoshi font-medium text-sm sm:text-base leading-relaxed mb-8 max-w-2xl">
+          We bring accredited site leadership, transparent itemized costing, and rigorous safety standards to every build. Property owners, schools, and procurement managers rely on our experienced team to complete projects on time with zero compromise on quality.
+        </p>
+
+        <!-- 6 Key Features Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8" id="why-choose-grid"></div>
+
+        <div class="flex flex-col sm:flex-row items-start gap-4">
+          <button
+            onclick="openQuoteModal()"
+            class="bg-[#f6921e] backdrop-blur-[2px] rounded-[8px] text-white font-satoshi font-bold text-sm py-3 px-6 flex items-center justify-center gap-2 select-none cursor-pointer transition-all hover:scale-[1.02] active:scale-[0.98] shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.35)] hover:shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.45),0_8px_25px_rgba(246,146,30,0.2)] group"
+          >
+            <span>Request a Consultation</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 w-full flex justify-center">
+        <div class="relative w-full max-w-md lg:max-w-full aspect-[4/3] sm:aspect-video lg:aspect-square overflow-hidden rounded-2xl border-2 border-slate-200/85 shadow-sm">
+          <img
+            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1000"
+            alt="Site management and blueprints inspection"
+            referrerpolicy="no-referrer"
+            class="w-full h-full object-cover select-none pointer-events-none transition-transform duration-700 hover:scale-[1.03]"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/20 via-transparent to-transparent pointer-events-none"></div>
+          <div class="absolute bottom-4 left-4 right-4 p-4 bg-white/95 backdrop-blur-md rounded-xl border border-slate-200/80 shadow-md">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-orange-50 border border-orange-100 flex items-center justify-center text-[#f6921e] shrink-0 font-bold">
+                <i data-lucide="shield-check" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <span class="block text-xs font-bold text-slate-900 font-satoshi uppercase tracking-wider">Accredited Site Management</span>
+                <span class="text-[11px] text-slate-500 font-medium font-satoshi">Full HSE &amp; Building Control Compliance</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============ 6. FEATURED CASE STUDIES ============ -->
+<div id="case-studies" class="w-full bg-[#faf9f6] border-b border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 border-l border-r border-slate-200">
+
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12 pb-6 border-b border-slate-200">
+      <div class="text-left">
+        <span class="text-xs tracking-wider font-semibold text-black font-satoshi bg-white px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 mb-3 border border-[#f6921e]/20 shadow-[0_10px_25px_-5px_rgba(148,163,184,0.15)] select-none">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#f6921e] shrink-0"></span>
+          <span>Featured Case Studies</span>
+        </span>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold font-satoshi text-slate-900 tracking-tight leading-tight">
+          Proven Commercial &amp; <br class="hidden sm:inline" />
+          <span class="font-playfair font-bold text-slate-900 opacity-75 inline">Building Projects</span>
+        </h2>
+      </div>
+      <p class="text-sm text-slate-500 font-satoshi font-medium max-w-md">
+        Explore recent commercial fit-outs, educational refurbishments, and structural developments completed with full client satisfaction.
+      </p>
+    </div>
+
+    <!-- 3 Case Study Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch" id="case-studies-grid"></div>
+
+  </div>
+</div>
+
+<!-- ============ 7. CLIENT TESTIMONIALS ============ -->
+<div id="testimonials" class="w-full bg-white border-b border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 border-l border-r border-slate-200">
+
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12 sm:mb-16 pb-8 border-b border-slate-200">
+
+      <div class="text-left">
+        <div class="mb-4">
+          <span class="text-xs tracking-wider font-semibold text-black font-satoshi bg-white px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 border border-[#f6921e]/20 shadow-[0_10px_25px_-5px_rgba(148,163,184,0.15)] select-none">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#f6921e] shrink-0"></span>
+            <span>Client Testimonials</span>
+          </span>
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold font-satoshi text-slate-900 tracking-tight leading-tight mb-3">
+          Trusted by Property Owners &amp; <br class="hidden sm:inline" />
+          <span class="font-playfair font-bold text-slate-900 opacity-[0.75] not-italic inline">Procurement Teams</span>
+        </h2>
+        <p class="text-slate-500 font-satoshi font-semibold text-sm sm:text-base leading-relaxed">
+          Real feedback from verified facilities directors, school bursars, and commercial developers.
+        </p>
+      </div>
+
+      <div class="flex-shrink-0 flex flex-col items-start md:items-end gap-2 bg-slate-50 border border-slate-200 rounded-xl p-4 shadow-sm">
+        <div class="flex items-center gap-2">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 font-satoshi">
+            Verified Customer Rating
+          </span>
+          <span class="text-xs font-black text-slate-800">5.0 / 5.0</span>
+        </div>
+        <div class="flex items-center gap-1" id="testimonials-header-stars"></div>
+      </div>
+
+    </div>
+
+    <!-- 3 Testimonial Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-start" id="testimonials-grid"></div>
+
+  </div>
+</div>
+
+<!-- ============ 8. COMMERCIAL SECTORS ============ -->
+<div id="sectors" class="w-full bg-[#fcfbfa] border-b border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 border-l border-r border-slate-200">
+
+    <div class="text-center mb-12">
+      <span class="text-xs tracking-wider font-semibold text-black font-satoshi bg-white px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 mb-3 border border-[#f6921e]/20 shadow-[0_10px_25px_-5px_rgba(148,163,184,0.15)] select-none">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#f6921e] shrink-0"></span>
+        <span>Commercial Sectors</span>
+      </span>
+      <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold font-satoshi text-slate-900 tracking-tight leading-tight">
+        Specialized Capabilities Across <br class="hidden sm:inline" />
+        <span class="font-playfair font-bold text-slate-900 opacity-[0.75] not-italic inline">Key Industry Sectors</span>
+      </h2>
+      <p class="text-sm text-slate-500 font-satoshi font-medium mt-3 max-w-lg mx-auto">
+        Tailored contracting protocols designed to meet the unique operational and compliance demands of your sector.
+      </p>
+    </div>
+
+    <!-- 4 Sector Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6" id="sectors-grid"></div>
+
+  </div>
+</div>
+
+<!-- ============ 9. PROJECT PROCESS ============ -->
+<div id="process" class="w-full bg-[#faf9f6]/40 border-b border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 border-l border-r border-slate-200">
+
+    <div class="text-center mb-16">
+      <span class="text-xs tracking-wider font-semibold text-black font-satoshi bg-white px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 mb-3 border border-[#f6921e]/20 shadow-[0_10px_25px_-5px_rgba(148,163,184,0.15)] select-none">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#f6921e] shrink-0"></span>
+        <span>Project Process</span>
+      </span>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold font-satoshi text-slate-900 tracking-tight leading-tight">
+        5 Steps to a Seamless <br class="hidden sm:inline" />
+        <span class="font-playfair font-bold text-slate-900 opacity-75 inline">Construction Handover</span>
+      </h2>
+      <p class="text-sm sm:text-base text-slate-500 font-satoshi font-medium mt-4 max-w-2xl mx-auto leading-relaxed">
+        Our structured project management pipeline guarantees transparent milestone reporting, budget adherence, and accredited site compliance.
+      </p>
+    </div>
+
+    <!-- 5 Step Timeline -->
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-4" id="process-steps-grid"></div>
+
+  </div>
+</div>
+
+<!-- ============ 10. FINAL CTA ============ -->
+<div class="w-full bg-white border-b border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 border-l border-r border-slate-200">
+
+    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-amber-500 via-[#f6921e] to-orange-600 text-white p-8 sm:p-12 lg:p-16 border border-[#f6921e]/30 shadow-[0_20px_50px_rgba(246,146,30,0.15)] transition-all duration-300 hover:shadow-2xl group">
+
+      <div class="absolute -top-24 -right-24 w-80 h-80 bg-white/20 rounded-full blur-3xl pointer-events-none group-hover:scale-110 transition-transform duration-700"></div>
+      <div class="absolute -bottom-24 -left-24 w-80 h-80 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-12">
+
+        <div class="max-w-3xl flex-1 text-left">
+          <div class="mb-4">
+            <span class="text-xs tracking-wider font-semibold text-black font-satoshi bg-white px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 border border-white/40 shadow-sm select-none">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#f6921e] shrink-0"></span>
+              <span>Commercial &amp; Building Partner</span>
+            </span>
+          </div>
+
+          <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-[38px] leading-[1.18] font-bold font-satoshi text-white tracking-tight mb-4">
+            Looking for a Reliable Commercial Construction Partner?
+          </h2>
+
+          <p class="text-orange-50 font-satoshi font-semibold text-xs sm:text-sm md:text-base leading-relaxed">
+            Speak with an accredited contractor ready to deliver quality work on time, on budget, and fully compliant with building regulations.
+          </p>
+        </div>
+
+        <div class="flex-shrink-0 flex flex-col sm:flex-row gap-3 items-start lg:items-center">
+          <button
+            onclick="openQuoteModal()"
+            class="bg-white rounded-[8px] text-[#f6921e] font-satoshi font-bold text-sm py-4 px-8 flex items-center justify-center gap-2.5 select-none cursor-pointer transition-all hover:scale-[1.03] active:scale-[0.97] shadow-md hover:shadow-lg group"
+          >
+            <span>Request Quote</span>
+            <div class="w-5 h-5 bg-[#f6921e] rounded-full flex items-center justify-center text-white transition-transform duration-200 group-hover:rotate-45 font-bold font-satoshi">
+              <i data-lucide="arrow-up-right" class="w-3 h-3 stroke-[3]"></i>
+            </div>
+          </button>
+
+          <a
+            href="#contact"
+            class="bg-orange-700/40 hover:bg-orange-700/60 rounded-[8px] text-white font-satoshi font-bold text-sm py-4 px-6 border border-white/30 flex items-center justify-center gap-2 transition-all"
+          >
+            <span>Contact Us</span>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ 11. CONTACT SECTION ============ -->
+<div id="contact" class="w-full bg-[#faf9f6]/40 border-b border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 border-l border-r border-slate-200">
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+
+      <div class="lg:col-span-5 flex flex-col justify-start text-left">
+        <div class="mb-5">
+          <span class="text-xs tracking-wider font-semibold text-black font-satoshi bg-white px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 border border-[#f6921e]/20 shadow-[0_10px_25px_-5px_rgba(148,163,184,0.15)] select-none">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#f6921e] shrink-0"></span>
+            <span>Get In Touch</span>
+          </span>
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold font-satoshi text-slate-900 tracking-tight leading-tight mb-5">
+          Discuss Your Project <br />
+          <span class="font-playfair font-bold text-slate-900 opacity-[0.75] not-italic inline">With Our Team</span>
+        </h2>
+
+        <p class="text-slate-500 font-satoshi font-semibold text-sm sm:text-base leading-relaxed mb-8 max-w-lg">
+          Tell us about your upcoming build or refurbishment and our senior site managers will provide a comprehensive site survey and itemized quote.
+        </p>
+
+        <div class="flex flex-col gap-6 pt-6 border-t border-slate-200/80">
+
+          <div class="flex items-center gap-4 group">
+            <div class="w-11 h-11 rounded-full border border-[#f6921e]/20 bg-[#f6921e]/10 flex items-center justify-center text-[#f6921e] shrink-0 transition-colors group-hover:bg-[#f6921e]/20">
+              <i data-lucide="phone" class="w-4 h-4 stroke-[2.5]"></i>
+            </div>
+            <div>
+              <span class="block text-[11px] font-extrabold uppercase tracking-widest text-slate-400 font-satoshi">
+                Direct Line
+              </span>
+              <a href="tel:08001234567" class="text-base font-bold font-satoshi text-slate-800 hover:text-[#f6921e] transition-colors">
+                0800 123 4567 / (020) 7946 0912
+              </a>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 group">
+            <div class="w-11 h-11 rounded-full border border-[#f6921e]/20 bg-[#f6921e]/10 flex items-center justify-center text-[#f6921e] shrink-0 transition-colors group-hover:bg-[#f6921e]/20">
+              <i data-lucide="mail" class="w-4 h-4 stroke-[2.5]"></i>
+            </div>
+            <div>
+              <span class="block text-[11px] font-extrabold uppercase tracking-widest text-slate-400 font-satoshi">
+                Tender Enquiries &amp; Quotes
+              </span>
+              <a href="mailto:tenders@apexconstruction.co.uk" class="text-base font-bold font-satoshi text-slate-800 hover:text-[#f6921e] transition-colors">
+                tenders@apexconstruction.co.uk
+              </a>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 group">
+            <div class="w-11 h-11 rounded-full border border-[#f6921e]/20 bg-[#f6921e]/10 flex items-center justify-center text-[#f6921e] shrink-0 transition-colors group-hover:bg-[#f6921e]/20">
+              <i data-lucide="map-pin" class="w-4 h-4 stroke-[2.5]"></i>
+            </div>
+            <div>
+              <span class="block text-[11px] font-extrabold uppercase tracking-widest text-slate-400 font-satoshi">
+                Head Office &amp; Depot
+              </span>
+              <span class="text-sm font-bold font-satoshi text-slate-700">
+                Apex Industrial Estate, Park Road, London EC1A 1BB
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="lg:col-span-7">
+        <div class="p-6 sm:p-10 rounded-2xl bg-white border-2 border-slate-200/80 shadow-md">
+          <form id="contact-form" class="space-y-6 text-left" onsubmit="handleContactSubmit(event)">
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+              <div class="flex flex-col gap-2">
+                <label for="contact-name" class="text-xs font-bold text-slate-700 uppercase tracking-wider font-satoshi">
+                  Full Name <span class="text-rose-500">*</span>
+                </label>
+                <input
+                  type="text" id="contact-name" name="name" required
+                  placeholder="e.g. David Miller"
+                  class="w-full bg-[#faf9f6]/40 border-2 border-slate-200 rounded-lg py-3 px-4 text-sm font-semibold font-satoshi text-slate-800 outline-none focus:border-[#f6921e]/60 transition-colors placeholder:text-slate-400"
+                />
+              </div>
+              <div class="flex flex-col gap-2">
+                <label for="contact-company" class="text-xs font-bold text-slate-700 uppercase tracking-wider font-satoshi">
+                  Company / Organization
+                </label>
+                <input
+                  type="text" id="contact-company" name="company"
+                  placeholder="e.g. St Jude Educational Trust"
+                  class="w-full bg-[#faf9f6]/40 border-2 border-slate-200 rounded-lg py-3 px-4 text-sm font-semibold font-satoshi text-slate-800 outline-none focus:border-[#f6921e]/60 transition-colors placeholder:text-slate-400"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+              <div class="flex flex-col gap-2">
+                <label for="contact-phone" class="text-xs font-bold text-slate-700 uppercase tracking-wider font-satoshi">
+                  Phone Number <span class="text-rose-500">*</span>
+                </label>
+                <input
+                  type="tel" id="contact-phone" name="phone" required
+                  placeholder="07700 900123"
+                  class="w-full bg-[#faf9f6]/40 border-2 border-slate-200 rounded-lg py-3 px-4 text-sm font-semibold font-satoshi text-slate-800 outline-none focus:border-[#f6921e]/60 transition-colors placeholder:text-slate-400"
+                />
+              </div>
+              <div class="flex flex-col gap-2">
+                <label for="contact-email" class="text-xs font-bold text-slate-700 uppercase tracking-wider font-satoshi">
+                  Email Address <span class="text-rose-500">*</span>
+                </label>
+                <input
+                  type="email" id="contact-email" name="email" required
+                  placeholder="david@example.co.uk"
+                  class="w-full bg-[#faf9f6]/40 border-2 border-slate-200 rounded-lg py-3 px-4 text-sm font-semibold font-satoshi text-slate-800 outline-none focus:border-[#f6921e]/60 transition-colors placeholder:text-slate-400"
+                />
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-2">
+              <label for="contact-sector" class="text-xs font-bold text-slate-700 uppercase tracking-wider font-satoshi">
+                Project Sector
+              </label>
+              <select id="contact-sector" class="w-full bg-[#faf9f6]/40 border-2 border-slate-200 rounded-lg py-3 px-4 text-sm font-semibold font-satoshi text-slate-800 outline-none focus:border-[#f6921e]/60 transition-colors">
+                <option>Commercial Building &amp; Fit-Out</option>
+                <option>Educational &amp; Academy Refurbishment</option>
+                <option>New Build / Structural Extension</option>
+                <option>Facilities Maintenance &amp; Upgrades</option>
+                <option>Industrial &amp; Logistics Facility</option>
+                <option>High-End Residential Build</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col gap-2">
+              <label for="contact-message" class="text-xs font-bold text-slate-700 uppercase tracking-wider font-satoshi">
+                Project Description &amp; Requirements
+              </label>
+              <textarea
+                id="contact-message" name="message" rows="4"
+                placeholder="Brief details about site location, estimated budget, timeline, or scope..."
+                class="w-full bg-[#faf9f6]/40 border-2 border-slate-200 rounded-lg py-3 px-4 text-sm font-semibold font-satoshi text-slate-800 outline-none focus:border-[#f6921e]/60 transition-colors placeholder:text-slate-400 resize-none"
+              ></textarea>
+            </div>
+
+            <div class="pt-2">
+              <button
+                type="submit" id="contact-submit-btn"
+                class="w-full bg-[#f6921e] rounded-[8px] text-white font-satoshi font-bold text-sm py-4 px-8 flex items-center justify-center gap-2.5 select-none cursor-pointer transition-all hover:scale-[1.01] active:scale-[0.99] shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.35)] hover:shadow-[inset_0px_4px_4px_0px_rgba(255,255,255,0.45),0_8px_30px_rgba(246,146,30,0.22)] group disabled:bg-slate-350 disabled:cursor-not-allowed"
+              >
+                <span id="contact-submit-label">Send Quote Request</span>
+                <i data-lucide="send" class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
+              </button>
+            </div>
+
+            <div id="contact-success" class="hidden p-4 rounded-xl bg-emerald-50 border border-emerald-100 text-left transition-all duration-300">
+              <p class="text-xs sm:text-sm font-bold text-emerald-800 font-satoshi leading-normal">
+                Thank you! Your project inquiry has been logged. An accredited site estimator will review your specifications and get back to you within 24 hours.
+              </p>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ 12. FOOTER ============ -->
+<footer class="w-full bg-white border-b border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-12 border-l border-r border-slate-200">
+
+    <div class="pt-4 pb-10 border-b border-slate-200 select-none overflow-hidden">
+      <h2 class="text-[10vw] md:text-[11vw] xl:text-[140px] font-black font-satoshi text-slate-900 tracking-tighter text-center leading-none whitespace-nowrap opacity-90">
+        APEX CONSTRUCTION
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 py-16 pb-16 border-b border-slate-200 text-left">
+
+      <div class="lg:col-span-4 flex flex-col items-start space-y-5">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-[#f6921e] flex items-center justify-center text-white font-bold">
+            <i data-lucide="building-2" class="w-5 h-5"></i>
+          </div>
+          <span class="font-satoshi font-black text-slate-900 text-xl tracking-tight">
+            APEX <span class="text-[#f6921e]">CONSTRUCTION</span>
+          </span>
+        </div>
+
+        <p class="text-slate-500 font-satoshi font-semibold text-sm leading-relaxed">
+          Accredited Building &amp; Commercial Contractors delivering high-quality construction across London and the South East.
+        </p>
+
+        <div class="pt-2">
+          <span class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-400 font-satoshi mb-3">
+            Industry Accreditations
+          </span>
+          <div class="flex flex-wrap items-center gap-3 text-xs font-bold text-slate-700 font-satoshi">
+            <span class="px-2.5 py-1 bg-slate-100 rounded-md border border-slate-200">SafeContractor</span>
+            <span class="px-2.5 py-1 bg-slate-100 rounded-md border border-slate-200">Which? Trusted</span>
+            <span class="px-2.5 py-1 bg-slate-100 rounded-md border border-slate-200">FMB Member</span>
+            <span class="px-2.5 py-1 bg-slate-100 rounded-md border border-slate-200">CHAS Accredited</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-2 flex flex-col space-y-4">
+        <span class="text-xs font-bold uppercase tracking-widest text-slate-400 font-satoshi">
+          Company
+        </span>
+        <ul class="space-y-2.5 text-sm font-satoshi font-bold text-slate-600">
+          <li><a href="#" class="hover:text-[#f6921e] transition-colors">Home</a></li>
+          <li><a href="#about" class="hover:text-[#f6921e] transition-colors">About Us</a></li>
+          <li><a href="#services" class="hover:text-[#f6921e] transition-colors">Services</a></li>
+          <li><a href="#case-studies" class="hover:text-[#f6921e] transition-colors">Case Studies</a></li>
+          <li><a href="#testimonials" class="hover:text-[#f6921e] transition-colors">Testimonials</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-3 flex flex-col space-y-4">
+        <span class="text-xs font-bold uppercase tracking-widest text-[#f6921e] font-satoshi">
+          Services
+        </span>
+        <ul class="space-y-2.5 text-sm font-satoshi font-semibold text-slate-500">
+          <li class="hover:text-slate-900 transition-colors">Commercial Fit-Outs</li>
+          <li class="hover:text-slate-900 transition-colors">School &amp; Academy Refurbishment</li>
+          <li class="hover:text-slate-900 transition-colors">New Builds &amp; Extensions</li>
+          <li class="hover:text-slate-900 transition-colors">Facilities Maintenance</li>
+          <li class="hover:text-slate-900 transition-colors">Industrial Warehousing</li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-3 flex flex-col space-y-4">
+        <span class="text-xs font-bold uppercase tracking-widest text-slate-400 font-satoshi">
+          Contact Info
+        </span>
+        <ul class="space-y-3.5 text-sm font-satoshi font-semibold text-slate-600">
+          <li class="flex items-center gap-2.5">
+            <i data-lucide="phone" class="w-4 h-4 text-[#f6921e] shrink-0"></i>
+            <a href="tel:08001234567" class="font-bold text-slate-800 hover:text-[#f6921e] transition-colors">0800 123 4567</a>
+          </li>
+          <li class="flex items-center gap-2.5">
+            <i data-lucide="mail" class="w-4 h-4 text-[#f6921e] shrink-0"></i>
+            <a href="mailto:tenders@apexconstruction.co.uk" class="font-bold text-slate-800 hover:text-[#f6921e] transition-colors break-all">tenders@apexconstruction.co.uk</a>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <i data-lucide="map-pin" class="w-4 h-4 text-[#f6921e] shrink-0 mt-0.5"></i>
+            <span class="text-slate-700 font-medium">Apex Estate, Park Road, London EC1A 1BB</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="pt-8 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-center">
+      <div class="text-xs font-satoshi font-bold text-slate-400">
+        &copy; 2026 Apex Commercial Construction Ltd. All rights reserved.
+      </div>
+      <div class="flex items-center gap-6 text-xs font-satoshi font-bold text-slate-500">
+        <a href="#" class="hover:text-[#f6921e] transition-colors">Privacy Policy</a>
+        <a href="#" class="hover:text-[#f6921e] transition-colors">Cookie Policy</a>
+        <a href="#" class="hover:text-[#f6921e] transition-colors">Terms of Business</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+</div> <!-- /wrapper -->
+
+<!-- ============ QUOTE MODAL ============ -->
+<div id="quote-modal-overlay" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4">
+  <div class="absolute inset-0 bg-slate-950/60 backdrop-blur-md" onclick="closeQuoteModal()"></div>
+
+  <div class="modal-card relative w-full max-w-xl overflow-hidden rounded-[24px] bg-white text-slate-900 border border-slate-100 shadow-[0_22px_55px_rgba(0,0,0,0.18)] z-10">
+    <button onclick="closeQuoteModal()" class="absolute right-4 top-4 rounded-full p-1 text-slate-400 hover:bg-slate-50 hover:text-slate-600 transition-colors z-20" id="close-quote-modal">
+      <i data-lucide="x" class="w-5 h-5"></i>
+    </button>
+
+    <div class="h-2 bg-[#f6921e] w-full"></div>
+
+    <div class="p-6 md:p-8">
+
+      <!-- Modal Step 1 -->
+      <form id="quote-modal-step-1" onsubmit="handleQuoteStep1(event)">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="p-2.5 bg-orange-50 text-[#f6921e] rounded-xl flex items-center justify-center">
+            <i data-lucide="file-text" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold font-satoshi text-slate-900">Request a Commercial Construction Quote</h3>
+            <p class="text-xs text-slate-400">Get an itemized tender estimate &amp; site feasibility assessment</p>
+          </div>
+        </div>
+
+        <div class="space-y-4 my-6">
+          <div>
+            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Project Sector *</label>
+            <select id="modal-sector" class="w-full text-sm px-4 py-3 rounded-xl border border-slate-200 outline-none focus:border-[#f6921e] transition-all bg-slate-50/50 font-semibold">
+              <option>Commercial Building &amp; Office Fit-Out</option>
+              <option>School or Academy Refurbishment</option>
+              <option>New Build / Major Structural Extension</option>
+              <option>Facilities Maintenance Contract</option>
+              <option>Industrial Warehousing / Logistics Hub</option>
+            </select>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Estimated Budget *</label>
+              <select id="modal-budget" class="w-full text-sm px-3 py-3 rounded-xl border border-slate-200 outline-none focus:border-[#f6921e] transition-all bg-slate-50/50 font-semibold">
+                <option>£25,000 - £75,000</option>
+                <option>£75,000 - £250,000</option>
+                <option>£250,000 - £1,000,000</option>
+                <option>£1,000,000+</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Target Start Date *</label>
+              <select id="modal-timeframe" class="w-full text-sm px-3 py-3 rounded-xl border border-slate-200 outline-none focus:border-[#f6921e] transition-all bg-slate-50/50 font-semibold">
+                <option>Immediate / Next 30 Days</option>
+                <option>1 - 3 Months</option>
+                <option>3 - 6 Months</option>
+                <option>Planning / Tendering Phase</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Your Full Name *</label>
+            <input type="text" id="modal-name" required placeholder="John Smith"
+              class="w-full text-sm px-4 py-3 rounded-xl border border-slate-200 outline-none focus:border-[#f6921e] transition-all bg-slate-50/50 font-semibold" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Work Email Address *</label>
+            <input type="email" id="modal-email" required placeholder="john@company.co.uk"
+              class="w-full text-sm px-4 py-3 rounded-xl border border-slate-200 outline-none focus:border-[#f6921e] transition-all bg-slate-50/50 font-semibold" />
+          </div>
+        </div>
+
+        <div class="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between">
+          <span class="text-xs text-slate-400">SafeContractor &amp; FMB Compliant</span>
+          <button type="submit" class="py-3 px-6 text-sm font-bold text-white rounded-[8px] bg-[#f6921e] shadow-sm flex items-center gap-2 hover:opacity-95 transition-all cursor-pointer">
+            <span>Submit Quote Request</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </form>
+
+      <!-- Modal Step 2 Success -->
+      <div id="quote-modal-step-2" class="hidden text-center py-6">
+        <div class="mx-auto w-16 h-16 bg-emerald-50 text-emerald-500 rounded-full flex items-center justify-center mb-4">
+          <i data-lucide="check" class="w-8 h-8 stroke-[2.5]"></i>
+        </div>
+
+        <h3 class="text-2xl font-bold font-satoshi text-slate-900 mb-2">Quote Request Received!</h3>
+
+        <p class="text-sm text-slate-500 max-w-sm mx-auto mb-6">
+          Thank you, <span class="font-bold text-slate-800" id="quote-success-name"></span>. Our estimating team has received your project specifications for <span class="font-bold text-slate-800" id="quote-success-sector"></span>.
+        </p>
+
+        <button type="button" onclick="closeQuoteModal()" class="py-2.5 px-6 font-semibold text-sm rounded-[8px] bg-slate-900 hover:bg-slate-800 text-white transition-colors">Done</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============ CASE STUDY MODAL ============ -->
+<div id="case-modal-overlay" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4">
+  <div class="absolute inset-0 bg-slate-950/60 backdrop-blur-md" onclick="closeCaseModal()"></div>
+
+  <div class="modal-card relative w-full max-w-2xl overflow-hidden rounded-[24px] bg-white text-slate-900 border border-slate-100 shadow-[0_22px_55px_rgba(0,0,0,0.18)] z-10 max-h-[90vh] overflow-y-auto">
+    <button onclick="closeCaseModal()" class="absolute right-4 top-4 rounded-full p-1 text-slate-400 hover:bg-slate-50 hover:text-slate-600 transition-colors z-20">
+      <i data-lucide="x" class="w-5 h-5"></i>
+    </button>
+
+    <div class="h-2 bg-[#f6921e] w-full"></div>
+
+    <div class="p-6 md:p-8" id="case-modal-content"></div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   DATA & CONSTANTS
+   ============================================================ */
+
+const SERVICES_DATA = [
+  {
+    title: "Commercial Building & Fit-Outs",
+    desc: "Comprehensive office, retail, and commercial space structural transformations.",
+    icon: "building-2",
+    bullets: ["Complete interior fit-out & partitions", "Structural steelwork & modifications", "Commercial HVAC & MEP upgrades", "Handover to full compliance standards"],
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    title: "Educational & Academy Refurbishments",
+    desc: "Specialized school, college, and campus construction meeting strict safety codes.",
+    icon: "graduation-cap",
+    bullets: ["Summer holiday turnaround schedules", "DBS-cleared site management teams", "Science labs, sports halls & classrooms", "Strict HSE & safeguarding protocols"],
+    image: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    title: "New Builds & Structural Extensions",
+    desc: "Multi-story extensions, steel frame construction, and ground-up builds.",
+    icon: "layers",
+    bullets: ["Site clearance & groundwork foundations", "Reinforced concrete & steel erection", "Architectural cladding & curtain walling", "Building control approval guaranteed"],
+    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    title: "Facilities Maintenance & Upgrades",
+    desc: "Scheduled maintenance, structural repairs, and commercial landlord compliance.",
+    icon: "wrench",
+    bullets: ["24/7 emergency response capability", "Planned preventative maintenance", "Fire safety & structural damp surveys", "Roofing & cladding weatherproofing"],
+    image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    title: "Industrial & Logistics Facilities",
+    desc: "Warehousing, industrial floor screeding, structural steel, and loading bays.",
+    icon: "warehouse",
+    bullets: ["Heavy-duty industrial flooring & pads", "Dock leveller & bay installations", "Mezzanine floor design & build", "Zero operational downtime guarantee"],
+    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    title: "High-End Residential Projects",
+    desc: "Luxury residential developments, structural conversions, and architectural builds.",
+    icon: "home",
+    bullets: ["Basement excavations & underpinning", "High-specification architectural finishes", "Bespoke glazing & structural joinery", "Full 10-year structural warranty"],
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800"
+  }
+];
+
+const WHY_CHOOSE_ITEMS = [
+  { icon: "shield-check", title: "Accredited Contractor", desc: "SafeContractor Approved, Which? Trusted Trader, and Federation of Master Builders member." },
+  { icon: "award", title: "Trusted Reputation", desc: "15+ years of delivering commercial builds on time and within agreed budget constraints." },
+  { icon: "building-2", title: "Commercial & Residential", desc: "Seamless transition capabilities from high-spec residential builds to large commercial sites." },
+  { icon: "check-circle-2", title: "Quality Workmanship", desc: "Dedicated ticketed site managers and fully certified tradespeople on every site." },
+  { icon: "message-square", title: "Reliable Communication", desc: "Dedicated single point-of-contact project managers with weekly progress reports." },
+  { icon: "clock", title: "Fully Responsive Service", desc: "Rapid site assessment response and transparent itemized tender breakdowns." }
+];
+
+const CASE_STUDIES_DATA = [
+  {
+    id: 1,
+    title: "St. Jude Academy Science Wing Refurbishment",
+    client: "Educational Trust",
+    scope: "Full refurbishment of 6 science laboratories, preparatory rooms, and modern ventilation systems.",
+    outcome: "Completed 2 weeks ahead of term start, 100% HSE safety audit score, within £450k budget.",
+    image: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80&w=800",
+    stats: { duration: "8 Weeks", budget: "£450,000", clientType: "Schools & Academies" }
+  },
+  {
+    id: 2,
+    title: "Oakridge Commercial Park Fit-Out",
+    client: "Property Developer Group",
+    scope: "15,000 sq ft Cat B office modernization, acoustic partitioning, and glass curtain walling.",
+    outcome: "Delivered on time, achieved BREEAM Excellent rating, 100% landlord sign-off on first inspection.",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800",
+    stats: { duration: "12 Weeks", budget: "£1,200,000", clientType: "Commercial Developer" }
+  },
+  {
+    id: 3,
+    title: "Westgate Logistics Hub Extension",
+    client: "Facilities Management Group",
+    scope: "High-load structural steel frame bay extension and heavy-duty floor screed pour.",
+    outcome: "Zero operational downtime for live warehouse operations, handover completed 5 days early.",
+    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
+    stats: { duration: "10 Weeks", budget: "£850,000", clientType: "Industrial & Logistics" }
+  }
+];
+
+const TESTIMONIALS_DATA = [
+  {
+    name: "Robert Henderson",
+    role: "Director of Estates",
+    org: "St. Jude Educational Trust",
+    rating: 5,
+    project: "School Refurbishment",
+    snippet: "Apex delivered our science wing refurbishment impeccably over the summer break. Their DBS-cleared staff and site discipline were second to none. We will certainly partner with them for our next phase."
+  },
+  {
+    name: "Sarah Jenkins",
+    role: "Commercial Property Manager",
+    org: "Oakridge Developments",
+    rating: 5,
+    project: "Office Fit-Out",
+    snippet: "Finding a contractor who respects budget limits and delivers flawless fit-out quality is rare. Apex provided transparent weekly reports and handled building control sign-offs seamlessly."
+  },
+  {
+    name: "Marcus Vance",
+    role: "Head of Operations",
+    org: "Westgate Logistics Hub",
+    rating: 5,
+    project: "Warehouse Extension",
+    snippet: "Extending a 24/7 operational warehouse without interrupting freight flow is extremely challenging. The team at Apex managed site safety and noise isolation perfectly."
+  }
+];
+
+const SECTORS_DATA = [
+  {
+    icon: "graduation-cap",
+    name: "Schools & Academies",
+    desc: "Safe, DBS-checked teams delivering summer holiday refurbishments, science labs, and sports hall extensions."
+  },
+  {
+    icon: "building-2",
+    name: "Commercial Buildings",
+    desc: "Retail hubs, hospitality venues, multi-tenant commercial spaces, and exterior facade upgrades."
+  },
+  {
+    icon: "briefcase",
+    name: "Offices & Corporate",
+    desc: "Cat A & Cat B workplace fit-outs, acoustic partitions, MEP upgrades, and energy efficiency compliance."
+  },
+  {
+    icon: "store",
+    name: "Local Businesses",
+    desc: "Workshop builds, trade counters, light manufacturing units, and structural commercial extensions."
+  }
+];
+
+const PROCESS_STEPS_DATA = [
+  { num: "01", name: "Consultation", desc: "Initial site discussion & comprehensive requirement mapping." },
+  { num: "02", name: "Site Assessment", desc: "Detailed structural survey, feasibility study & safety review." },
+  { num: "03", name: "Quotation & Tender", desc: "Transparent, itemized cost breakdown and guaranteed timeline." },
+  { num: "04", name: "Construction Phase", desc: "Accredited site management, safety compliance & weekly updates." },
+  { num: "05", name: "Project Completion", desc: "Final snagging, building control certification & handover." }
+];
+
+const STAR_SVG = `<svg class="w-4 h-4 text-[#f6921e] fill-current" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
+
+/* ============================================================
+   RENDER FUNCTIONS
+   ============================================================ */
+
+function renderServices() {
+  const el = document.getElementById('services-grid');
+  el.innerHTML = SERVICES_DATA.map(s => `
+    <div class="bg-white rounded-2xl border-2 border-slate-200/80 p-6 flex flex-col justify-between transition-all duration-300 hover:border-[#f6921e]/60 hover:shadow-[0_12px_30px_rgba(246,146,30,0.06)] group">
+      <div>
+        <div class="aspect-video w-full rounded-xl overflow-hidden border border-slate-200/60 mb-5 relative">
+          <img src="${s.image}" alt="${s.title}" referrerpolicy="no-referrer" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent pointer-events-none"></div>
+          <div class="absolute top-3 left-3 p-2 bg-white/90 backdrop-blur-md rounded-lg text-[#f6921e] border border-slate-200/60 shadow-sm">
+            <i data-lucide="${s.icon}" class="w-5 h-5"></i>
+          </div>
+        </div>
+        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 font-satoshi mb-2 group-hover:text-amber-950 transition-colors">${s.title}</h3>
+        <p class="text-xs sm:text-sm text-slate-500 font-satoshi font-semibold leading-relaxed mb-4">${s.desc}</p>
+        <ul class="space-y-1.5 mb-6 text-xs text-slate-600 font-satoshi font-semibold">
+          ${s.bullets.map(b => `<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#f6921e] shrink-0"></span>${b}</li>`).join('')}
+        </ul>
+      </div>
+      <div>
+        <button onclick="openQuoteModal()" class="w-full bg-slate-50 hover:bg-orange-50/60 text-slate-800 hover:text-[#f6921e] font-satoshi font-bold text-xs py-2.5 px-4 rounded-lg flex items-center justify-center gap-2 transition-all border border-slate-200">
+          <span>Learn More / Request Quote</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderNavServicesDropdown() {
+  const el = document.getElementById('services-dropdown-list');
+  el.innerHTML = SERVICES_DATA.slice(0, 4).map(s => `
+    <a href="#services" onclick="closeServicesDropdown();" class="flex items-start gap-2.5 p-2 rounded-xl hover:bg-orange-50/50 transition-all text-left group">
+      <div class="p-1.5 bg-slate-50 text-slate-500 group-hover:bg-orange-100 group-hover:text-[#f6921e] rounded-lg transition-colors mt-0.5">
+        <i data-lucide="${s.icon}" class="w-4 h-4"></i>
+      </div>
+      <div>
+        <div class="text-[13px] font-bold text-slate-900 group-hover:text-[#f6921e] transition-colors leading-tight">${s.title}</div>
+        <div class="text-[11px] text-slate-400 group-hover:text-slate-500 leading-tight mt-0.5">${s.desc}</div>
+      </div>
+    </a>
+  `).join('');
+}
+
+function renderWhyChoose() {
+  const el = document.getElementById('why-choose-grid');
+  el.innerHTML = WHY_CHOOSE_ITEMS.map(item => `
+    <div class="p-4 rounded-xl bg-slate-50/80 border border-slate-200/80 flex items-start gap-3 transition-all hover:border-[#f6921e]/40">
+      <div class="p-2 bg-orange-50 border border-orange-100 rounded-lg text-[#f6921e] shrink-0 mt-0.5">
+        <i data-lucide="${item.icon}" class="w-4 h-4"></i>
+      </div>
+      <div>
+        <h4 class="text-sm font-bold text-slate-900 font-satoshi mb-1">${item.title}</h4>
+        <p class="text-xs text-slate-500 font-medium font-satoshi leading-relaxed">${item.desc}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderCaseStudies() {
+  const el = document.getElementById('case-studies-grid');
+  el.innerHTML = CASE_STUDIES_DATA.map(cs => `
+    <div class="bg-white rounded-2xl border-2 border-slate-200/80 overflow-hidden flex flex-col justify-between transition-all duration-300 hover:border-[#f6921e]/60 hover:shadow-[0_12px_30px_rgba(246,146,30,0.06)] group">
+      <div>
+        <div class="aspect-video w-full overflow-hidden relative">
+          <img src="${cs.image}" alt="${cs.title}" referrerpolicy="no-referrer" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent"></div>
+          <span class="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider text-white bg-slate-900/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/20">
+            ${cs.client}
+          </span>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold font-satoshi text-slate-900 mb-2 group-hover:text-amber-950 transition-colors leading-snug">${cs.title}</h3>
+          <p class="text-xs text-slate-500 font-satoshi font-semibold leading-relaxed mb-4">${cs.scope}</p>
+          <div class="p-3 bg-emerald-50/80 border border-emerald-100 rounded-xl mb-4">
+            <span class="block text-[10px] font-bold text-emerald-800 uppercase tracking-wider mb-0.5">Key Outcome:</span>
+            <span class="text-xs font-bold text-emerald-900 leading-snug">${cs.outcome}</span>
+          </div>
+        </div>
+      </div>
+      <div class="px-6 pb-6">
+        <button onclick="openCaseModal(${cs.id})" class="w-full bg-[#f6921e] text-white font-satoshi font-bold text-xs py-2.5 px-4 rounded-lg flex items-center justify-center gap-2 transition-all hover:scale-[1.02] shadow-sm">
+          <span>View Case Study</span>
+          <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+        </button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderTestimonials() {
+  document.getElementById('testimonials-header-stars').innerHTML =
+    Array(5).fill(STAR_SVG).join('') + `<span class="text-xs font-bold text-slate-700 font-satoshi ml-1">5.0 / 5.0</span>`;
+
+  const el = document.getElementById('testimonials-grid');
+  el.innerHTML = TESTIMONIALS_DATA.map(t => `
+    <div class="p-6 rounded-2xl bg-[#faf9f6]/40 border-2 border-slate-200 hover:border-[#f6921e]/35 transition-all duration-300 flex flex-col justify-between h-full group text-left">
+      <div>
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-1">${Array(t.rating).fill(STAR_SVG).join('')}</div>
+          <span class="text-[10px] font-bold uppercase tracking-wider text-[#f6921e] bg-orange-50 px-2 py-0.5 rounded border border-orange-100">${t.project}</span>
+        </div>
+        <blockquote class="text-slate-700 font-satoshi font-semibold text-sm sm:text-base leading-relaxed mb-6">
+          "${t.snippet}"
+        </blockquote>
+      </div>
+      <div class="pt-4 border-t border-slate-200/80 flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-[#f6921e]/10 border border-[#f6921e]/20 flex items-center justify-center text-[#f6921e] font-bold text-sm">
+          ${t.name.charAt(0)}
+        </div>
+        <div>
+          <span class="block text-sm font-bold text-slate-900 font-satoshi">${t.name}</span>
+          <span class="text-xs text-slate-500 font-medium font-satoshi">${t.role}, ${t.org}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderSectors() {
+  const el = document.getElementById('sectors-grid');
+  el.innerHTML = SECTORS_DATA.map((s, idx) => `
+    <div class="bg-white rounded-2xl border-2 border-slate-200/80 p-6 flex flex-col justify-between transition-all duration-300 hover:border-[#f6921e]/60 hover:shadow-[0_12px_30px_rgba(246,146,30,0.06)] group">
+      <div>
+        <div class="w-12 h-12 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center text-[#f6921e] mb-5 group-hover:bg-[#f6921e] group-hover:text-white transition-colors duration-300">
+          <i data-lucide="${s.icon}" class="w-6 h-6"></i>
+        </div>
+        <h3 class="text-xl font-bold text-slate-900 font-satoshi mb-2 group-hover:text-amber-950 transition-colors">${s.name}</h3>
+        <p class="text-xs sm:text-sm text-slate-500 font-satoshi font-semibold leading-relaxed">${s.desc}</p>
+      </div>
+      <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+        <span class="text-[11px] font-extrabold text-slate-400 font-satoshi uppercase">Sector 0${idx+1}</span>
+        <button onclick="openQuoteModal()" class="text-xs font-bold text-[#f6921e] hover:underline flex items-center gap-1">
+          Explore Tenders
+          <i data-lucide="arrow-right" class="w-3 h-3"></i>
+        </button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderProcessSteps() {
+  const el = document.getElementById('process-steps-grid');
+  el.innerHTML = PROCESS_STEPS_DATA.map(step => `
+    <div class="bg-white rounded-2xl border-2 border-slate-200/80 p-5 flex flex-col justify-between transition-all duration-300 hover:border-[#f6921e]/60 hover:shadow-[0_12px_30px_rgba(246,146,30,0.06)] group">
+      <div>
+        <div class="text-xs font-extrabold text-[#f6921e] font-satoshi tracking-widest uppercase mb-3">Step ${step.num}</div>
+        <h3 class="text-lg font-bold text-slate-900 font-satoshi mb-2 group-hover:text-amber-950 transition-colors">${step.name}</h3>
+        <p class="text-xs text-slate-500 font-satoshi font-semibold leading-relaxed">${step.desc}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ============================================================
+   MODALS INTERACTION LOGIC
+   ============================================================ */
+
+function openQuoteModal() {
+  document.getElementById('quote-modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeQuoteModal() {
+  document.getElementById('quote-modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+  setTimeout(() => {
+    document.getElementById('quote-modal-step-1').classList.remove('hidden');
+    document.getElementById('quote-modal-step-2').classList.add('hidden');
+  }, 250);
+}
+
+function handleQuoteStep1(e) {
+  e.preventDefault();
+  const name = document.getElementById('modal-name').value;
+  const sector = document.getElementById('modal-sector').value;
+
+  document.getElementById('quote-success-name').textContent = name;
+  document.getElementById('quote-success-sector').textContent = sector;
+
+  document.getElementById('quote-modal-step-1').classList.add('hidden');
+  document.getElementById('quote-modal-step-2').classList.remove('hidden');
+}
+
+function openCaseModal(id) {
+  const cs = CASE_STUDIES_DATA.find(c => c.id === id);
+  if (!cs) return;
+
+  const content = document.getElementById('case-modal-content');
+  content.innerHTML = `
+    <div class="aspect-video w-full overflow-hidden rounded-xl mb-5 relative border border-slate-200">
+      <img src="${cs.image}" alt="${cs.title}" referrerpolicy="no-referrer" class="w-full h-full object-cover" />
+      <span class="absolute top-3 left-3 text-xs font-bold uppercase tracking-wider text-white bg-slate-900/80 px-3 py-1 rounded-md">
+        ${cs.client}
+      </span>
+    </div>
+    <h3 class="text-2xl font-bold font-satoshi text-slate-900 mb-2">${cs.title}</h3>
+    <p class="text-sm text-slate-600 font-satoshi font-semibold leading-relaxed mb-6">${cs.scope}</p>
+
+    <div class="grid grid-cols-3 gap-3 p-4 bg-slate-50 rounded-xl border border-slate-200/80 mb-6 text-center">
+      <div>
+        <span class="block text-[10px] font-bold text-slate-400 uppercase">Duration</span>
+        <span class="text-sm font-bold text-slate-800">${cs.stats.duration}</span>
+      </div>
+      <div>
+        <span class="block text-[10px] font-bold text-slate-400 uppercase">Budget</span>
+        <span class="text-sm font-bold text-slate-800">${cs.stats.budget}</span>
+      </div>
+      <div>
+        <span class="block text-[10px] font-bold text-slate-400 uppercase">Category</span>
+        <span class="text-sm font-bold text-slate-800">${cs.stats.clientType}</span>
+      </div>
+    </div>
+
+    <div class="p-4 bg-emerald-50 border border-emerald-100 rounded-xl mb-6">
+      <span class="block text-xs font-bold text-emerald-800 uppercase mb-1">Project Outcome &amp; Sign-Off</span>
+      <p class="text-sm font-semibold text-emerald-900">${cs.outcome}</p>
+    </div>
+
+    <div class="flex justify-end gap-3">
+      <button onclick="closeCaseModal()" class="py-2.5 px-5 text-sm font-semibold text-slate-500 hover:text-slate-800">Close</button>
+      <button onclick="closeCaseModal(); openQuoteModal();" class="py-2.5 px-5 text-sm font-bold text-white bg-[#f6921e] rounded-lg shadow-sm hover:opacity-95">Request Similar Quote</button>
+    </div>
+  `;
+
+  document.getElementById('case-modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  lucide.createIcons();
+}
+
+function closeCaseModal() {
+  document.getElementById('case-modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleContactSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('contact-submit-btn');
+  const label = document.getElementById('contact-submit-label');
+
+  btn.disabled = true;
+  label.textContent = "Processing Inquiry...";
+
+  setTimeout(() => {
+    document.getElementById('contact-success').classList.remove('hidden');
+    document.getElementById('contact-form').reset();
+    btn.disabled = false;
+    label.textContent = "Send Quote Request";
+
+    setTimeout(() => {
+      document.getElementById('contact-success').classList.add('hidden');
+    }, 6000);
+  }, 1200);
+}
+
+/* Navbar Services Dropdown */
+let servicesDropdownOpen = false;
+function toggleServicesDropdown() {
+  servicesDropdownOpen = !servicesDropdownOpen;
+  applyServicesDropdownState();
+}
+function closeServicesDropdown() {
+  servicesDropdownOpen = false;
+  applyServicesDropdownState();
+}
+function applyServicesDropdownState() {
+  const dropdown = document.getElementById('services-dropdown');
+  const chevron = document.getElementById('services-chevron');
+  const button = document.getElementById('nav-services');
+  if (servicesDropdownOpen) {
+    dropdown.classList.remove('hidden');
+    chevron.classList.add('rotate-180');
+    button.classList.add('text-[#f6921e]');
+  } else {
+    dropdown.classList.add('hidden');
+    chevron.classList.remove('rotate-180');
+    button.classList.remove('text-[#f6921e]');
+  }
+}
+
+function toggleMobileMenu() {
+  const drawer = document.getElementById('mobile-drawer');
+  drawer.classList.toggle('hidden');
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  renderServices();
+  renderNavServicesDropdown();
+  renderWhyChoose();
+  renderCaseStudies();
+  renderTestimonials();
+  renderSectors();
+  renderProcessSteps();
+
+  lucide.createIcons();
+
+  const wrapper = document.getElementById('services-dropdown-wrapper');
+  const button = document.getElementById('nav-services');
+  wrapper.addEventListener('mouseenter', () => { servicesDropdownOpen = true; applyServicesDropdownState(); });
+  wrapper.addEventListener('mouseleave', () => { servicesDropdownOpen = false; applyServicesDropdownState(); });
+  button.addEventListener('click', toggleServicesDropdown);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeQuoteModal();
+      closeCaseModal();
+    }
+  });
+});
+</script>
+
+</body>
+</html>
